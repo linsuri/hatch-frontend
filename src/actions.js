@@ -22,6 +22,20 @@ export function getMentees() {
   }
 }
 
+export function openProfileMenu(event) {
+  return {
+    type: 'OPEN_PROFILE_MENU',
+    payload: event.currentTarget
+  }
+}
+
+export function closeProfileMenu() {
+  return {
+    type: 'CLOSE_PROFILE_MENU',
+    payload: null
+  }
+}
+
 // export function likePet(pet) {
 //   return {
 //     type: 'LIKE_PET',

@@ -1,22 +1,46 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Header from './Header'
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import LoggedInHeader from './LoggedInHeader'
+import LoggedOutHeader from './LoggedOutHeader'
 import MentorsContainer from './MentorsContainer'
 import MenteesContainer from './MenteesContainer'
 
-class App extends Component {
-  render() {
+const App = ({ loggedIn }) => {
+  if (loggedIn) {
     return (
-      <Fragment>
-        <Header />
+      <Router>
         <Fragment>
-          <MentorsContainer />
-          <MenteesContainer />
+          <LoggedInHeader />
+          <Fragment>
+            <MentorsContainer />
+            <MenteesContainer />
+          </Fragment>
         </Fragment>
-      </Fragment>
+      </Router>
+    );
+  } else {
+    return (
+      <Router>
+        <Fragment>
+          <LoggedOutHeader />
+          <Fragment>
+
+
+          </Fragment>
+        </Fragment>
+      </Router>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  console.log('App state', state);
+  return {
+    loggedIn: state.loggedIn,
+  }
+}
+
+export default connect(mapStateToProps)(App);

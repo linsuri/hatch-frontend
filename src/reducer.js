@@ -1,4 +1,6 @@
 const initialState = {
+  loggedIn: true,
+  profileMenu: null,
   user: { id: 1,
     first_name: 'Amy',
     last_name: 'Santiago',
@@ -25,6 +27,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, mentors: action.payload }
     case 'GET_MENTEES':
       return { ...state, mentees: action.payload }
+    case 'OPEN_PROFILE_MENU':
+      return { ...state, profileMenu: action.payload }
+    case 'CLOSE_PROFILE_MENU':
+      return { ...state, profileMenu: action.payload }
     default:
       return state;
   }
