@@ -8,10 +8,11 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import DashboardRounded from '@material-ui/icons/DashboardRounded';
+import ExploreRounded from '@material-ui/icons/ExploreRounded';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
@@ -39,18 +40,6 @@ const LoggedInHeader = (props) => {
   const open = Boolean(props.profileMenu);
 
   return (
-    // <div className="header">
-    //   <div className="headerInner">
-    //     <div className="logo">
-    //       <h1>HATCH</h1>
-    //     </div>
-    //     <div className="logInSignUp">
-    //       <h1>Log In / Sign Up</h1>
-    //     </div>
-    //   </div>
-    // </div>
-    // <div>
-
     <div className={classes.root}>
       <AppBar position="fixed">
         <div className={classes.layout}>
@@ -62,6 +51,16 @@ const LoggedInHeader = (props) => {
               HATCH
             </Typography>
             <div>
+              <IconButton
+                color="inherit"
+              >
+                <DashboardRounded />
+              </IconButton>
+              <IconButton
+                color="inherit"
+              >
+                <ExploreRounded />
+              </IconButton>
               <IconButton
                 aria-owns={open ? 'menu-appbar' : null}
                 aria-haspopup="true"

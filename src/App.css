@@ -1,4 +1,4 @@
-.header {
+/* .header {
   background-color: #e5e5e5;
   position: fixed;
   height: 100px;
@@ -12,42 +12,40 @@
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
-.logo {
+/* .logo {
   position: relative;
   display: inline-flex;
   border: solid;
   width: 49%;
-}
+} */
 
-.logInSignUp {
+/* .logInSignUp {
   position: absolute;
   display: inline-flex;
   border: solid;
   width: 49%;
   right: 0;
-  /* text-align: right; */
-}
+  text-align: right;
+} */
 
 .mentorsContainer {
-  position: relative;
+  /* position: relative; */
   border: solid;
-  top: 100px;
   height: 500px;
-  width: 75%;
+  /* width: 100%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
 }
 
 .menteesContainer {
-  position: relative;
+  /* position: relative; */
   border: solid;
-  top: 100px;
   height: 500px;
-  width: 75%;
+  /* width: 100%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
 }
 
 .card {

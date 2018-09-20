@@ -1,6 +1,8 @@
 const initialState = {
   loggedIn: true,
   profileMenu: null,
+  // currentPage: 'dashboard',
+  dashboardTab: 0,
   user: { id: 1,
     first_name: 'Amy',
     last_name: 'Santiago',
@@ -31,6 +33,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, profileMenu: action.payload }
     case 'CLOSE_PROFILE_MENU':
       return { ...state, profileMenu: action.payload }
+    case 'DASHBOARD_CLICK_TAB':
+      return { ...state, dashboardTab: action.payload }
+    case 'DASHBOARD_CHANGE_TAB':
+      return { ...state, dashboardTab: action.payload }
     default:
       return state;
   }

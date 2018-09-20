@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import LoggedInHeader from './LoggedInHeader'
 import LoggedOutHeader from './LoggedOutHeader'
-import MentorsContainer from './MentorsContainer'
-import MenteesContainer from './MenteesContainer'
+import Dashboard from './Dashboard'
+// import MentorsContainer from './MentorsContainer'
+// import MenteesContainer from './MenteesContainer'
 
 const App = ({ loggedIn }) => {
   if (loggedIn) {
@@ -15,8 +15,7 @@ const App = ({ loggedIn }) => {
         <Fragment>
           <LoggedInHeader />
           <Fragment>
-            <MentorsContainer />
-            <MenteesContainer />
+            <Dashboard />
           </Fragment>
         </Fragment>
       </Router>
