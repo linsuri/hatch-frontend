@@ -100,7 +100,7 @@ const LoggedInHeader = (props) => {
                 open={open}
                 onClose={() => props.closeProfileMenu()}
               >
-                <MenuItem onClick={() => props.closeProfileMenu()}>Profile</MenuItem>
+                <MenuItem onClick={() => props.closeProfileMenu}>Profile</MenuItem>
                 <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
               </Menu>
             </div>

@@ -54,7 +54,6 @@ export function logIn(email_address, password) {
         }
       })
     .then(json => {
-      console.log(json)
       localStorage.setItem('jwt', json.jwt)
       dispatch({ type: 'SET_CURRENT_USER', payload: json.user })
     })

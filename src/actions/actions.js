@@ -1,27 +1,3 @@
-export function getMentors() {
-  return {
-    type: 'GET_MENTORS',
-    payload: [
-      { id: 2,
-        first_name: 'Ray',
-        last_name: 'Holt',
-      },
-    ],
-  }
-}
-
-export function getMentees() {
-  return {
-    type: 'GET_MENTEES',
-    payload: [
-      { id: 3,
-        first_name: 'Jakey',
-        last_name: 'Peralta'
-      },
-    ],
-  }
-}
-
 export function openProfileMenu(event) {
   return {
     type: 'OPEN_PROFILE_MENU',

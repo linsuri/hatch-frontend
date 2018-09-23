@@ -27,7 +27,7 @@ const MentorsContainer = (props) => {
 function mapStateToProps(state) {
   // console.log('MentorsContainer state', state);
   return {
-    mentors: state.dashboardReducer.mentors,
+    mentors: state.usersReducer.user.mentors,
   }
 }
 
