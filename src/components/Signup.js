@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -135,10 +136,11 @@ class Signup extends React.Component {
             </Button>
           </form>
           <Typography component="p">
-            By signing up, you agree to our <a href='#'>Terms, Data Policy</a> and <a href='#'>Cookies Policy</a>.
+            By signing up, you agree to our <Link to="/login" style={{ textDecoration: 'none'}}>Terms, Data Policy</Link> and <Link to="/login" style={{ textDecoration: 'none'}}>Cookies Policy</Link>.
           </Typography>
         </Paper>
-        <p style={{textAlign: 'center'}}>Have an account? Log In</p>
+        <p style={{textAlign: 'center'}}>
+          Have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Log In</Link></p>
       </div>
     )
 

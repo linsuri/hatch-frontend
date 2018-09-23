@@ -22,10 +22,6 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
 };
 
 const LoggedOutHeader = (props) => {
@@ -36,7 +32,9 @@ const LoggedOutHeader = (props) => {
         <div className={classes.layout}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.grow}>
-              HATCH
+              <Link to="/" style={{ textDecoration: 'none', color:'white'}}>
+                HATCH
+              </Link>
             </Typography>
             <Link to="/login" style={{ textDecoration: 'none', color:'white'}}>
               <Button variant="contained" color="primary">

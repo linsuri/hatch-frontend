@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux';
-import * as actions from  '../actions/actions';
+import * as actions from  '../actions';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,6 +14,8 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import DashboardRounded from '@material-ui/icons/DashboardRounded';
 import ExploreRounded from '@material-ui/icons/ExploreRounded';
+import ChatRounded from '@material-ui/icons/ChatRounded';
+import NotificationsRounded from '@material-ui/icons/NotificationsRounded';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
@@ -29,10 +32,6 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-  // menuButton: {
-  //   marginLeft: -12,
-  //   marginRight: 20,
-  // },
 };
 
 const LoggedInHeader = (props) => {
@@ -45,23 +44,40 @@ const LoggedInHeader = (props) => {
       <AppBar position="fixed">
         <div className={classes.layout}>
           <Toolbar>
-            {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton> */}
             <Typography variant="title" color="inherit" className={classes.grow}>
-              HATCH
+              <Link to="/" style={{ textDecoration: 'none', color:'white'}}>
+                HATCH
+              </Link>
             </Typography>
             <div>
-              <IconButton
-                color="inherit"
-              >
-                <DashboardRounded />
-              </IconButton>
-              <IconButton
-                color="inherit"
-              >
-                <ExploreRounded />
-              </IconButton>
+              <Link to="/dashboard" style={{ color:'white'}}>
+                <IconButton
+                  color="inherit"
+                >
+                  <DashboardRounded />
+                </IconButton>
+              </Link>
+              <Link to="/browse" style={{ color:'white'}}>
+                <IconButton
+                  color="inherit"
+                >
+                  <ExploreRounded />
+                </IconButton>
+              </Link>
+              <Link to="/chats" style={{ color:'white'}}>
+                <IconButton
+                  color="inherit"
+                >
+                  <ChatRounded />
+                </IconButton>
+              </Link>
+              <Link to="/notifications" style={{ color:'white'}}>
+                <IconButton
+                  color="inherit"
+                >
+                  <NotificationsRounded />
+                </IconButton>
+              </Link>
               <IconButton
                 aria-owns={open ? 'menu-appbar' : null}
                 aria-haspopup="true"
@@ -85,7 +101,7 @@ const LoggedInHeader = (props) => {
                 onClose={() => props.closeProfileMenu()}
               >
                 <MenuItem onClick={() => props.closeProfileMenu()}>Profile</MenuItem>
-                <MenuItem onClick={() => props.closeProfileMenu()}>My account</MenuItem>
+                <MenuItem onClick={() => props.closeProfileMenu()}>Logout</MenuItem>
               </Menu>
             </div>
           </Toolbar>
@@ -101,7 +117,7 @@ LoggedInHeader.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    profileMenu: state.profileMenu,
+    profileMenu: state.reducer.profileMenu,
   }
 }
 

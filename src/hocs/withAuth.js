@@ -33,17 +33,17 @@ const withAuth = /*FUNCTION*/ (WrappedComponent) => {
     }
   }
 
-  const mapDispatchToProps = /*FUNCTION*/ (dispatch) => {
-    return {
-      fetchCurrentUser: () => dispatch(actions.fetchCurrentUser()), //dispatch is automagically provided by redux
-    }
-  }
+  // const mapDispatchToProps = /*FUNCTION*/ (dispatch) => {
+  //   return {
+  //     fetchCurrentUser: () => dispatch(actions.fetchCurrentUser()), //dispatch is automagically provided by redux
+  //   }
+  // }
 
   // const connectedToReduxHOC = connect(mapStateToProps, mapDispatchToProps)
   // const connectedAuthorizedComponent = connectedToReduxHOC(AuthorizedComponent)
   // return connectedAuthorizedComponent
 
-  return connect(mapStateToProps,actions)(AuthorizedComponent)
+  return connect(mapStateToProps, actions)(AuthorizedComponent)
 }
 
 export default withAuth

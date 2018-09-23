@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -9,7 +10,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -113,7 +113,7 @@ class Login extends React.Component {
             </Button>
           </form>
         </Paper>
-        <p style={{textAlign: 'center'}}>Don't have an account? Sign Up</p>
+        <p style={{textAlign: 'center'}}>Don't have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Sign Up</Link></p>
       </div>
     )
 
