@@ -62,20 +62,20 @@ export function logIn(email_address, password) {
   }
 }
 
-// export const fetchCurrentUser = () => {
-//   // takes the token in localStorage and finds out who it belongs to
-//   return (dispatch) => {
-//     // dispatch(authenticatingUser()) //tells the app we are fetching
-//     fetch("http://localhost:3000/api/v1/profile", {
-//       method: 'GET',
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem('jwt')}`
-//       }
-//     })
-//       .then(response => response.json())
-//       .then((json) => dispatch(setCurrentUser(json.user)))
-//   }
-// }
+export const fetchCurrentUser = () => {
+  // takes the token in localStorage and finds out who it belongs to
+  return (dispatch) => {
+    // dispatch(authenticatingUser()) //tells the app we are fetching
+    fetch("http://localhost:3000/api/v1/profile", {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+      .then(response => response.json())
+      .then((json) => dispatch(setCurrentUser(json.user)))
+  }
+}
 
 export function setCurrentUser(userData) {
   return {

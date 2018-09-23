@@ -5,7 +5,7 @@ import MenteesContainer from './MenteesContainer'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions/actions';
-// import withAuth from '../hocs/withAuth'
+import withAuth from '../hocs/withAuth'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -88,7 +88,7 @@ function mapStateToProps(state) {
   }
 }
 
-export default compose(
+export default withAuth(compose(
   withStyles(styles, { withTheme: true }),
   connect(mapStateToProps, actions)
-)(Dashboard);
+)(Dashboard));
