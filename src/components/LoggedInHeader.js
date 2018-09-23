@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux';
-import * as actions from  './actions';
+import * as actions from  '../actions/actions';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,6 +24,7 @@ const styles = {
   },
   root: {
     flexGrow: 1,
+    zIndex: 2,
   },
   grow: {
     flexGrow: 1,
@@ -35,7 +36,7 @@ const styles = {
 };
 
 const LoggedInHeader = (props) => {
-  console.log('LoggedInHeader props', props)
+  // console.log('LoggedInHeader props', props)
   const { classes } = props;
   const open = Boolean(props.profileMenu);
 

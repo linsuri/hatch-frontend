@@ -1,9 +1,11 @@
 import React from 'react'
+import LoggedInHeader from './LoggedInHeader'
 import MentorsContainer from './MentorsContainer'
 import MenteesContainer from './MenteesContainer'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import * as actions from  './actions';
+import * as actions from  '../actions/actions';
+// import withAuth from '../hocs/withAuth'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -34,16 +36,18 @@ const styles = theme => ({
     marginRight: 150,
     position: 'relative',
     top: 100,
+    zIndex: 1,
   },
 });
 
 const Dashboard = (props) => {
-  console.log('Dashboard props', props)
+  // console.log('Dashboard props', props)
 
     const { classes, theme } = props;
 
     return (
       <div className={classes.root}>
+        <LoggedInHeader />
         <AppBar position="relative" color="default">
           <Tabs
             value={props.dashboardTab}
@@ -78,9 +82,9 @@ Dashboard.propTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log('Dashboard state', state);
+  // console.log('Dashboard state', state);
   return {
-    dashboardTab: state.dashboardTab,
+    dashboardTab: state.reducer.dashboardTab,
   }
 }
 

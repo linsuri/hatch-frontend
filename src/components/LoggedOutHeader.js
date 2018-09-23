@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,6 +17,7 @@ const styles = {
   },
   root: {
     flexGrow: 1,
+    zIndex: 2,
   },
   grow: {
     flexGrow: 1,
@@ -28,29 +31,23 @@ const styles = {
 const LoggedOutHeader = (props) => {
   const { classes } = props;
   return (
-    // <div className="header">
-    //   <div className="headerInner">
-    //     <div className="logo">
-    //       <h1>HATCH</h1>
-    //     </div>
-    //     <div className="logInSignUp">
-    //       <h1>Log In / Sign Up</h1>
-    //     </div>
-    //   </div>
-    // </div>
-    // <div>
     <div className={classes.root}>
       <AppBar position="fixed">
         <div className={classes.layout}>
           <Toolbar>
-            {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton> */}
             <Typography variant="title" color="inherit" className={classes.grow}>
               HATCH
             </Typography>
-            <Button variant="contained" color="primary">Log In</Button>
-            <Button color="inherit">Sign Up</Button>
+            <Link to="/login" style={{ textDecoration: 'none', color:'white'}}>
+              <Button variant="contained" color="primary">
+                Log In
+              </Button>
+            </Link>
+            <Link to="/signup" style={{ textDecoration: 'none', color:'white'}}>
+              <Button color="inherit" >
+                Sign Up
+              </Button>
+            </Link>
           </Toolbar>
         </div>
       </AppBar>
