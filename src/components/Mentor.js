@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import * as actions from  '../actions/actions';
+import * as actions from  '../actions';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';

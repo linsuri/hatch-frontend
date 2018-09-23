@@ -87,3 +87,10 @@ export const failedLogin = (errorMsg) => ({
   type: 'FAILED_LOGIN',
   payload: errorMsg
 })
+
+export const logout = () => {
+  return dispatch => {
+    localStorage.clear()
+    dispatch({ type: 'LOG_OUT' })
+  }
+}

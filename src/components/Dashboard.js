@@ -4,7 +4,7 @@ import MentorsContainer from './MentorsContainer'
 import MenteesContainer from './MenteesContainer'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import * as actions from  '../actions/actions';
+import * as actions from  '../actions';
 import withAuth from '../hocs/withAuth'
 
 import PropTypes from 'prop-types';
@@ -84,7 +84,7 @@ Dashboard.propTypes = {
 function mapStateToProps(state) {
   // console.log('Dashboard state', state);
   return {
-    dashboardTab: state.reducer.dashboardTab,
+    dashboardTab: state.dashboardReducer.dashboardTab,
   }
 }
 

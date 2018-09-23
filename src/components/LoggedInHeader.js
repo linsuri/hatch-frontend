@@ -101,7 +101,7 @@ const LoggedInHeader = (props) => {
                 onClose={() => props.closeProfileMenu()}
               >
                 <MenuItem onClick={() => props.closeProfileMenu()}>Profile</MenuItem>
-                <MenuItem onClick={() => props.closeProfileMenu()}>Logout</MenuItem>
+                <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
               </Menu>
             </div>
           </Toolbar>
@@ -117,7 +117,8 @@ LoggedInHeader.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    profileMenu: state.reducer.profileMenu,
+    profileMenu: state.dashboardReducer.profileMenu,
+    logout: state.usersReducer.logout,
   }
 }
 

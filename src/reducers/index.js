@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import usersReducer from './usersReducer'
-import reducer from './reducer'
+import dashboardReducer from './dashboardReducer'
 
-const rootReducer = combineReducers({ usersReducer: usersReducer, reducer: reducer })
+const rootReducer = combineReducers({ usersReducer: usersReducer, dashboardReducer: dashboardReducer })
 
 export default rootReducer

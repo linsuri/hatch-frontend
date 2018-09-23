@@ -1,13 +1,7 @@
-// import usersReducer from './usersReducer'
-
 const initialState = {
   profileMenu: null,
   // currentPage: 'dashboard',
   dashboardTab: 0,
-  // user: { id: 1,
-  //   first_name: 'Amy',
-  //   last_name: 'Santiago',
-  // },
   mentors: [
     { id: 2,
       first_name: 'Raymond',
@@ -46,22 +40,20 @@ const initialState = {
   ],
 }
 
-export default function reducer(state = initialState, action) {
+export default function dashboardReducer(state = initialState, action) {
   // console.log('reducer', state, action);
 
   switch(action.type) {
-    // case 'SIGN_UP':
-    //   return { ... state }
-    // case 'SET_CURRENT_USER':
-    //   return { ...state, user: action.payload, loggedIn: true }
+    case 'OPEN_PROFILE_MENU':
+    return { ...state, profileMenu: action.payload }
+    case 'CLOSE_PROFILE_MENU':
+    return { ...state, profileMenu: action.payload }
+
+    
     case 'GET_MENTORS':
       return { ...state, mentors: action.payload }
     case 'GET_MENTEES':
       return { ...state, mentees: action.payload }
-    case 'OPEN_PROFILE_MENU':
-      return { ...state, profileMenu: action.payload }
-    case 'CLOSE_PROFILE_MENU':
-      return { ...state, profileMenu: action.payload }
     case 'DASHBOARD_CLICK_TAB':
       return { ...state, dashboardTab: action.payload }
     case 'DASHBOARD_CHANGE_TAB':
