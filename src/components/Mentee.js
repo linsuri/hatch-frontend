@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions/actions';
-import Details from './Details'
+import MenteeDetails from './MenteeDetails'
 import Chatbox from './Chatbox'
 
 import PropTypes from 'prop-types';
@@ -90,10 +90,10 @@ class Mentee extends React.Component {
           >
             Show Details
           </Button>
-          <Details
-            open={this.state.open}
+          <MenteeDetails
+            open={this.state.detailsOpen}
             onClose={this.handleDetailsClose}
-            mentor={this.props.mentor}
+            mentee={this.props.mentee}
             classes={classes}
           />
           <Button
@@ -104,9 +104,9 @@ class Mentee extends React.Component {
             Chat
           </Button>
           <Chatbox
-            open={this.state.open}
+            open={this.state.chatOpen}
             onClose={this.handleChatClose}
-            mentor={this.props.mentor}
+            mentee={this.props.mentee}
             // classes={classes}
           />
         </CardActions>

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions';
-import Details from './Details'
+import MentorDetails from './MentorDetails'
 import Chatbox from './Chatbox'
 
 import PropTypes from 'prop-types';
@@ -90,7 +90,7 @@ class Mentor extends React.Component {
           >
             Show Details
           </Button>
-          <Details
+          <MentorDetails
             open={this.state.detailsOpen}
             onClose={this.handleDetailsClose}
             mentor={this.props.mentor}

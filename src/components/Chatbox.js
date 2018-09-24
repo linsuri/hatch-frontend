@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions';
 
-import { withStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 
 class Chatbox extends React.Component {
