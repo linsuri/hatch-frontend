@@ -19,7 +19,12 @@ class Chatbox extends React.Component {
     return (
       <Dialog maxWidth="lg" onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
         <div style={{width:'600px', height:'800px'}}>
+          <div style={{width:'600px', height:'80px', backgroundColor:'black'}}>
 
+          </div>
+          <div style={{position:'absolute', bottom:'0', width:'600px', height:'160px', backgroundColor:'black'}}>
+
+          </div>
         </div>
       </Dialog>
     )
