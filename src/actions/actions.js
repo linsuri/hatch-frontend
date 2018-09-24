@@ -25,6 +25,13 @@ export function dashboardChangeTab(index) {
     payload: index
   }
 }
+ 
+// export function showDetails(details) {
+//   return {
+//     type: 'SHOW_DETAILS',
+//     payload: details
+//   }
+// }
 
 // export function likePet(pet) {
 //   return {

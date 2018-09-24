@@ -1,6 +1,7 @@
 const initialState = {
   profileMenu: null,
   dashboardTab: 0,
+  // details: {},
 }
 
 export default function dashboardReducer(state = initialState, action) {
@@ -17,6 +18,8 @@ export default function dashboardReducer(state = initialState, action) {
       return { ...state, dashboardTab: action.payload }
     case 'DASHBOARD_CHANGE_TAB':
       return { ...state, dashboardTab: action.payload }
+    // case 'SHOW_DETAILS':
+    //   return { ...state, details: action.payload }
     default:
       return state;
   }

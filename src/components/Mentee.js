@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions/actions';
+import Details from './Details'
+import Chatbox from './Chatbox'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,43 +26,93 @@ const styles = {
   },
 };
 
-const Mentee = (props) => {
-  // console.log('Mentee props', props);
-  const { classes } = props;
-  const { first_name, last_name } = props.mentee;
-  return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          height="200"
-          image="https://vignette.wikia.nocookie.net/brooklynnine-nine/images/d/d4/Season4.jpg/revision/latest/scale-to-width-down/337?cb=20160815182818"
-          title="title"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            {first_name} {last_name}
-          </Typography>
-          <Typography component="p">
-            Job Title
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Show Details
-        </Button>
-        <Button size="small" color="primary">
-          Chat
-        </Button>
-      </CardActions>
-    </Card>
-    // <div className="card" onClick={() => props.getMentees()}>
-    //   {first_name}
-    //   {last_name}
-    // </div>
-  )
+class Mentee extends React.Component {
+
+  state = {
+    detailsOpen: false,
+    chatOpen: false,
+  }
+
+  handleDetailsClickOpen = () => {
+    this.setState({
+      detailsOpen: true,
+    });
+  };
+
+  handleChatClickOpen = () => {
+    this.setState({
+      chatOpen: true,
+    });
+  };
+
+  handleDetailsClose = () => {
+    this.setState({
+      detailsOpen: false,
+    });
+  };
+
+  handleChatClose = () => {
+    this.setState({
+      chatOpen: false,
+    });
+  };
+
+  render() {
+    console.log('Mentee props', this.props);
+
+    const { classes } = this.props;
+    const { first_name, last_name, job_title } = this.props.mentee;
+
+    return (
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            height="200"
+            image="https://vignette.wikia.nocookie.net/brooklynnine-nine/images/d/d4/Season4.jpg/revision/latest/scale-to-width-down/337?cb=20160815182818"
+            title="title"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              {first_name} {last_name}
+            </Typography>
+            <Typography component="p">
+              {job_title}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button
+            size="small"
+            color="primary"
+            onClick={this.handleDetailsClickOpen}
+          >
+            Show Details
+          </Button>
+          <Details
+            open={this.state.open}
+            onClose={this.handleDetailsClose}
+            mentor={this.props.mentor}
+            classes={classes}
+          />
+          <Button
+            size="small"
+            color="primary"
+            onClick={this.handleChatClickOpen}
+          >
+            Chat
+          </Button>
+          <Chatbox
+            open={this.state.open}
+            onClose={this.handleChatClose}
+            mentor={this.props.mentor}
+            // classes={classes}
+          />
+        </CardActions>
+      </Card>
+    )
+  }
 }
 
 Mentee.propTypes = {
@@ -71,5 +123,3 @@ export default compose(
   withStyles(styles),
   connect(null, actions)
 )(Mentee);
-
-// export default connect(null, actions)(Mentee);
