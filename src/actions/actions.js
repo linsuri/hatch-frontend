@@ -25,7 +25,14 @@ export function dashboardChangeTab(index) {
     payload: index
   }
 }
- 
+
+// export function setActiveConversation(id) {
+//   return {
+//     type: 'SET_ACTIVE_CONVERSATION',
+//     payload: id
+//   }
+// }
+
 // export function showDetails(details) {
 //   return {
 //     type: 'SHOW_DETAILS',

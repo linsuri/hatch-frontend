@@ -1,6 +1,8 @@
 const initialState = {
   profileMenu: null,
   dashboardTab: 0,
+  conversations: [],
+  activeConversation: null,
   // details: {},
 }
 
@@ -20,6 +22,8 @@ export default function dashboardReducer(state = initialState, action) {
       return { ...state, dashboardTab: action.payload }
     // case 'SHOW_DETAILS':
     //   return { ...state, details: action.payload }
+    case 'SET_ACTIVE_CONVERSATION':
+      return { ...state, activeConversation: action.payload }
     default:
       return state;
   }
