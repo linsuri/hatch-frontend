@@ -7,7 +7,7 @@ import { API_ROOT } from '../constants';
 import Cable from './Cable'
 import NewConversationForm from './NewConversationForm'
 import MessagesArea from './MessagesArea';
-
+import NewMessageForm from './NewMessageForm'
 
 
 // import { withStyles } from '@material-ui/core/styles';
@@ -16,14 +16,20 @@ import Dialog from '@material-ui/core/Dialog';
 class MentorChatbox extends React.Component {
 
   state = {
-    conversations: [],
-    activeConversation: null
+    relationship: null,
+    messages: [],
+    // activeConversation: null
   };
 
   componentDidMount = () => {
-    fetch(`${API_ROOT}/api/v1/conversations`)
+    fetch(`${API_ROOT}/api/v1/relationships`)
       .then(res => res.json())
-      .then(conversations => this.setState({ conversations }));
+      .then(json => this.setState({
+        relationship: json.filter(relationship => relationship.mentee.id === this.props.user.id).find(relationship => relationship.mentor.id === this.props.mentor.id),
+        messages: json.filter(relationship => relationship.mentee.id === this.props.user.id).find(relationship => relationship.mentor.id === this.props.mentor.id).messages,
+      })
+      )
+      // .then(json => console.log('json', json.filter(relationship => relationship.mentee.id === this.props.user.id).find(relationship => relationship.mentor.id === this.props.mentor.id).messages));
   };
 
   handleClick = id => {
@@ -31,10 +37,11 @@ class MentorChatbox extends React.Component {
   };
 
   handleReceivedConversation = response => {
-    const { conversation } = response;
+    // console.log('response', response)
+    const { message } = response;
     this.setState({
-      conversations: [...this.state.conversations, conversation]
-    });
+      messages: [...this.state.messages, message]
+    }, () => console.log('setting state of messages', this.state.messages));
   };
 
   handleReceivedMessage = response => {
@@ -56,7 +63,7 @@ class MentorChatbox extends React.Component {
   render() {
     const { classes, ...other } = this.props;
     // const { conversations, messages } = this.props;
-    console.log('MentorChatbox props', this.props)
+    // console.log('MentorChatbox props', this.props)
 
     const { conversations, activeConversation } = this.state;
 
@@ -68,28 +75,32 @@ class MentorChatbox extends React.Component {
           </div> */}
 
 
-          <div className="conversationsList">
+          <div className="messageList">
         <ActionCable
-          channel={{ channel: 'ConversationsChannel' }}
+          channel={{ channel: 'MessagesChannel' }}
           onReceived={this.handleReceivedConversation}
         />
-        {this.state.conversations.length ? (
+        {/* {this.state.conversations.length ? (
           <Cable
             conversations={conversations}
             handleReceivedMessage={this.handleReceivedMessage}
           />
-        ) : null}
-        <h2>Conversations</h2>
-        <ul>{mapConversations(conversations, this.handleClick)}</ul>
-        <NewConversationForm />
-        {activeConversation ? (
+        ) : null} */}
+        <h2>Messages</h2>
+        <ul>
+          {this.state.messages.map(message => <li key={message.id}>{message.text}</li>)}
+        </ul>
+        {/* <ul>{mapConversations(conversations, this.handleClick)}</ul> */}
+        {/* <NewConversationForm /> */}
+        {/* {activeConversation ? (
           <MessagesArea
             conversation={findActiveConversation(
               conversations,
               activeConversation
             )}
           />
-        ) : null}
+        ) : null} */}
+        <NewMessageForm relationship={this.state.relationship} />
       </div>
 
 

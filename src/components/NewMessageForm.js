@@ -24,8 +24,10 @@ class NewMessageForm extends React.Component {
     fetch(`${API_ROOT}/api/v1/messages`, {
       method: 'POST',
       headers: HEADERS,
-      body: JSON.stringify(this.state)
-    });
+      body: JSON.stringify({message: this.state})
+    })
+    // .then(res => res.json())
+    // .then(json => console.log(json))
     this.setState({ text: '' });
   };
 
