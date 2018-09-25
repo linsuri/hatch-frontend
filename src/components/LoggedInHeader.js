@@ -118,7 +118,7 @@ LoggedInHeader.propTypes = {
 function mapStateToProps(state) {
   return {
     profileMenu: state.dashboardReducer.profileMenu,
-    logout: state.usersReducer.logout,
+    logOut: state.usersReducer.logOut,
   }
 }
 
