@@ -13,7 +13,7 @@ import MessagesArea from './MessagesArea';
 // import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 
-class Chatbox extends React.Component {
+class MentorChatbox extends React.Component {
 
   state = {
     conversations: [],
@@ -56,7 +56,7 @@ class Chatbox extends React.Component {
   render() {
     const { classes, ...other } = this.props;
     // const { conversations, messages } = this.props;
-    console.log('Chatbox props', this.props)
+    console.log('MentorChatbox props', this.props)
 
     const { conversations, activeConversation } = this.state;
 
@@ -103,7 +103,7 @@ class Chatbox extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('Chatbox state', state);
+  // console.log('MentorChatbox state', state);
   return {
     user: state.usersReducer.user,
     // conversations: state.dashboardReducer.conversations,
@@ -114,7 +114,7 @@ function mapStateToProps(state) {
 export default compose(
   // withStyles(styles),
   connect(mapStateToProps, actions)
-)(Chatbox);
+)(MentorChatbox);
 
 
 const findActiveConversation = (conversations, activeConversation) => {

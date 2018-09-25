@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions';
 import MentorDetails from './MentorDetails'
-import Chatbox from './Chatbox'
+import MentorChatbox from './MentorChatbox'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -58,7 +58,7 @@ class Mentor extends React.Component {
   };
 
   render() {
-    console.log('Mentor props', this.props);
+    // console.log('Mentor props', this.props);
 
     const { classes } = this.props;
     const { first_name, last_name, job_title } = this.props.mentor;
@@ -103,7 +103,7 @@ class Mentor extends React.Component {
           >
             Chat
           </Button>
-          <Chatbox
+          <MentorChatbox
             open={this.state.chatOpen}
             onClose={this.handleChatClose}
             mentor={this.props.mentor}

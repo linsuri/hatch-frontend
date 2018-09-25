@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions/actions';
 import MenteeDetails from './MenteeDetails'
-import Chatbox from './Chatbox'
+import MenteeChatbox from './MenteeChatbox'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -58,7 +58,7 @@ class Mentee extends React.Component {
   };
 
   render() {
-    console.log('Mentee props', this.props);
+    // console.log('Mentee props', this.props);
 
     const { classes } = this.props;
     const { first_name, last_name, job_title } = this.props.mentee;
@@ -103,7 +103,7 @@ class Mentee extends React.Component {
           >
             Chat
           </Button>
-          <Chatbox
+          <MenteeChatbox
             open={this.state.chatOpen}
             onClose={this.handleChatClose}
             mentee={this.props.mentee}
