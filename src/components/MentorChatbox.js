@@ -4,9 +4,9 @@ import { compose } from 'redux';
 import { ActionCable } from 'react-actioncable-provider';
 import * as actions from  '../actions';
 import { API_ROOT } from '../constants';
-import Cable from './Cable'
-import NewConversationForm from './NewConversationForm'
-import MessagesArea from './MessagesArea';
+// import Cable from './Cable'
+// import NewConversationForm from './NewConversationForm'
+// import MessagesArea from './MessagesArea';
 import NewMessageForm from './NewMessageForm'
 
 
@@ -29,7 +29,6 @@ class MentorChatbox extends React.Component {
         messages: json.filter(relationship => relationship.mentee.id === this.props.user.id).find(relationship => relationship.mentor.id === this.props.mentor.id).messages,
       })
       )
-      // .then(json => console.log('json', json.filter(relationship => relationship.mentee.id === this.props.user.id).find(relationship => relationship.mentor.id === this.props.mentor.id).messages));
   };
 
   handleClick = id => {
@@ -61,6 +60,7 @@ class MentorChatbox extends React.Component {
   };
 
   render() {
+    console.log('state', this.state)
     const { classes, ...other } = this.props;
     // const { conversations, messages } = this.props;
     // console.log('MentorChatbox props', this.props)

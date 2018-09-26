@@ -26,8 +26,6 @@ class NewMessageForm extends React.Component {
       headers: HEADERS,
       body: JSON.stringify({message: this.state})
     })
-    // .then(res => res.json())
-    // .then(json => console.log(json))
     this.setState({ text: '' });
   };
 

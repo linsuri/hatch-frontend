@@ -29,7 +29,6 @@ class MenteeChatbox extends React.Component {
         messages: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id).messages,
       })
       )
-      // .then(json => console.log('json', json.filter(relationship => relationship.mentee.id === this.props.user.id).find(relationship => relationship.mentor.id === this.props.mentor.id).messages));
   };
 
   handleClick = id => {

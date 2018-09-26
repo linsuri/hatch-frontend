@@ -12,6 +12,7 @@ const withAuth = /*FUNCTION*/ (WrappedComponent) => {
     }
 
     render() {
+      // console.log(this.props.location)
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
         //i have a token and i'm logged in
         // wrapped component in our case is Profile
@@ -21,7 +22,11 @@ const withAuth = /*FUNCTION*/ (WrappedComponent) => {
       //   return <Loader active inline="centered" />
       } else {
         //user is not AUTHORIZED to see this component
-        return <Redirect to="/login" />
+        return <Redirect to={{
+          pathname: '/login',
+          state: { currentPage: this.props.location.pathname }
+        }}
+      />
       }
     }
   }

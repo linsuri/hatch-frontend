@@ -73,10 +73,10 @@ class Login extends React.Component {
 
   render() {
     const { classes } = this.props;
-    // console.log("Login props", this.props)
+    // console.log("Login props", this.props.location.state)
 
     return this.props.loggedIn ? (
-      <Redirect to="/dashboard" />
+      <Redirect to={this.props.location.state ? this.props.location.state.currentPage : "/dashboard"} />
     ) : (
       <div className={classes.root}>
         <LoggedOutHeader />
