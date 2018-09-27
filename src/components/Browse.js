@@ -12,7 +12,12 @@ class Browse extends React.Component {
   }
 
   render() {
-    console.log('browser props', this.props)
+    const allMentorsIds = (this.props.allMentors ? this.props.allMentors.map(mentor => mentor.id) : null)
+    const usersMentorsIds = (this.props.user ? this.props.user.mentors.map(mentor => mentor.id) : null)
+    const possibleMentorsIds = (allMentorsIds && usersMentorsIds ? allMentorsIds.filter(id => !usersMentorsIds.includes(id)) : null)
+    const possibleMentors = (this.props.allMentors && this.props.user && possibleMentorsIds ? this.props.allMentors.filter(mentor =>  possibleMentorsIds.includes(mentor.id)) : this.props.allMentors)
+
+    // console.log('this.props.allMentors', this.props.allMentors)
 
     return (
       <div>
@@ -27,7 +32,7 @@ class Browse extends React.Component {
         {!this.props.allMentors ?
           null :
           <ul>
-            {this.props.allMentors.map(mentor => (
+            {possibleMentors.map(mentor => (
               <li key={mentor.id}>
                 {mentor.first_name} {mentor.last_name}
                 <button onClick={() => this.props.requestMentorship(this.props.user.id, mentor.id)}>Request Mentorship</button>
