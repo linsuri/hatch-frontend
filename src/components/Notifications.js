@@ -5,6 +5,11 @@ import { connect } from 'react-redux';
 import { ActionCable } from 'react-actioncable-provider';
 // import * as actions from  '../actions';
 // import withAuth from '../hocs/withAuth'
+import { API_ROOT } from '../constants';
+
+
+let user = null
+let allRelationships = null
 
 class Notifications extends React.Component {
 
@@ -15,12 +20,11 @@ class Notifications extends React.Component {
   componentDidMount = () => {
     fetch(`${API_ROOT}/api/v1/users`)
     .then(res => res.json())
-    .then(json => (
-      const user = json.find(user => user.id === this.props.user.id)
-      const allRelationships = [ ...user.active_relationships, ...user.passive_relationships ]
-      this.setState({
-      allNotifications: [ ...this.state.allNotifications, allRelationships ]
-    )
+    .then(json => user = json.find(user => user.id === this.props.user.id))
+    .then(json => allRelationships = [ ...user.active_relationships, ...user.passive_relationships ])
+    .then(this.setState({
+    allNotifications: [ ...this.state.allNotifications, allRelationships ]
+
       // relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id),
       // messages: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id).messages,
     }))
