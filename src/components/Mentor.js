@@ -70,7 +70,7 @@ class Mentor extends React.Component {
             component="img"
             className={classes.media}
             height="200"
-            image="https://vignette.wikia.nocookie.net/brooklynnine-nine/images/d/d4/Season4.jpg/revision/latest/scale-to-width-down/337?cb=20160815182818"
+            image="/profile-placeholder.png"
             title="title"
           />
           <CardContent>
