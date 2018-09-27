@@ -4,9 +4,9 @@ import { compose } from 'redux';
 import { ActionCable } from 'react-actioncable-provider';
 import * as actions from  '../actions';
 import { API_ROOT } from '../constants';
-import Cable from './Cable'
-import NewConversationForm from './NewConversationForm'
-import MessagesArea from './MessagesArea';
+// import Cable from './Cable'
+// import NewConversationForm from './NewConversationForm'
+// import MessagesArea from './MessagesArea';
 import NewMessageForm from './NewMessageForm'
 
 
@@ -23,12 +23,11 @@ class MenteeChatbox extends React.Component {
 
   componentDidMount = () => {
     fetch(`${API_ROOT}/api/v1/relationships`)
-      .then(res => res.json())
-      .then(json => this.setState({
-        relationship: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id),
-        messages: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id).messages,
-      })
-      )
+    .then(res => res.json())
+    .then(json => this.setState({
+      relationship: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id),
+      messages: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id).messages,
+    }))
   };
 
   handleClick = id => {
@@ -52,8 +51,6 @@ class MenteeChatbox extends React.Component {
     conversation.messages = [...conversation.messages, message];
     this.setState({ conversations });
   };
-
-
 
   handleClose = () => {
     this.props.onClose(this.props.selectedValue);

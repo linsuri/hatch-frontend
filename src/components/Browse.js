@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import { compose } from 'redux';
 import * as actions from  '../actions';
 import withAuth from '../hocs/withAuth'
+import RequestMentorButton from './RequestMentorButton'
 
 class Browse extends React.Component {
 
@@ -15,7 +16,8 @@ class Browse extends React.Component {
     const allMentorsIds = (this.props.allMentors ? this.props.allMentors.map(mentor => mentor.id) : null)
     const usersMentorsIds = (this.props.user ? this.props.user.mentors.map(mentor => mentor.id) : null)
     const possibleMentorsIds = (allMentorsIds && usersMentorsIds ? allMentorsIds.filter(id => !usersMentorsIds.includes(id)) : null)
-    const possibleMentors = (this.props.allMentors && this.props.user && possibleMentorsIds ? this.props.allMentors.filter(mentor =>  possibleMentorsIds.includes(mentor.id)) : this.props.allMentors)
+    const possibleMentorsIdsMinusSelf = (this.props.allMentors && this.props.user && possibleMentorsIds ? possibleMentorsIds.filter(id => id !== this.props.user.id) : null)
+    const possibleMentors = (this.props.allMentors && this.props.user && possibleMentorsIdsMinusSelf ? this.props.allMentors.filter(mentor =>  possibleMentorsIdsMinusSelf.includes(mentor.id)) : this.props.allMentors)
 
     // console.log('this.props.allMentors', this.props.allMentors)
 
@@ -35,7 +37,8 @@ class Browse extends React.Component {
             {possibleMentors.map(mentor => (
               <li key={mentor.id}>
                 {mentor.first_name} {mentor.last_name}
-                <button onClick={() => this.props.requestMentorship(this.props.user.id, mentor.id)}>Request Mentorship</button>
+                <RequestMentorButton mentor={mentor} />
+                {/* <button onClick={() => this.props.requestMentorship(this.props.user.id, mentor.id)}>Request Mentorship</button> */}
               </li>
             ))}
           </ul>

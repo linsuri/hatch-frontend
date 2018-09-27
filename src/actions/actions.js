@@ -12,6 +12,36 @@ export function closeProfileMenu() {
   }
 }
 
+export function openNotificationsMenu(event) {
+  return {
+    type: 'OPEN_NOTIFICATIONS_MENU',
+    payload: event.currentTarget
+  }
+}
+
+export function closeNotificationsMenu() {
+  return {
+    type: 'CLOSE_NOTIFICATIONS_MENU',
+    payload: null
+  }
+}
+
+// export const fetchAllNotifications = (user_id) => {
+//   return (dispatch) => {
+//     fetch("http://localhost:3000/api/v1/users")
+//     .then(res => res.json())
+//     .then(json => console.log(json.filter(user => user.id === user_id)))
+//   }
+// }
+//
+// export function setAllNotifications(user) {
+//   const allRelationships = [ ...user.active_relationships, ...user.passive_relationships ]
+//   return {
+//     type: 'SET_ALL_NOTIFICATIONS',
+//     payload: allRelationships,
+//   }
+// }
+
 export function dashboardClickTab(event, value) {
   return {
     type: 'DASHBOARD_CLICK_TAB',
