@@ -23,7 +23,7 @@ export const requestMentorship = (mentee_id, mentor_id) => {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        relationships: {
+        relationship: {
           mentee_id: mentee_id,
           mentor_id: mentor_id,
           accepted: false,

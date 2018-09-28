@@ -39,17 +39,40 @@ export const fetchAllNotifications = (user_id) => {
 
 export function setAllNotifications(user) {
   let allNotifications = []
-  if (user.sent_notifications.length > 0 && user.received_notifications.length > 0) {
-    allNotifications = [...user.sent_notifications, ...user.received_notifications]
-  } else if (user.sent_notifications.length === 0 && user.received_notifications.length > 0) {
+  // if (user.sent_notifications.length > 0 && user.received_notifications.length > 0) {
+  //   allNotifications = [...user.sent_notifications, ...user.received_notifications]
+  // } else if (user.sent_notifications.length === 0 && user.received_notifications.length > 0) {
+  //   allNotifications = [...user.received_notifications]
+  // } else if (user.sent_notifications.length > 0 && user.received_notifications.length === 0) {
+  //   allNotifications = [...user.sent_notifications]
+  // }
+  if (user.received_notifications.length > 0) {
     allNotifications = [...user.received_notifications]
-  } else if (user.sent_notifications.length > 0 && user.received_notifications.length === 0) {
-    allNotifications = [...user.sent_notifications]
   }
-  // console.log("hey")
   return {
     type: 'SET_ALL_NOTIFICATIONS',
     payload: allNotifications,
+  }
+}
+
+export const acceptRequest = (mentor_id, mentee_id) => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/relationships", {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        relationship: {
+          mentee_id: mentee_id,
+          mentor_id: mentor_id,
+          accepted: true,
+        }
+      })
+    })
+    // .then(res => res.json())
+    // .then(json => console.log(json))
   }
 }
 

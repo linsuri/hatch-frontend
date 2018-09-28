@@ -12,12 +12,32 @@ class Notifications extends React.Component {
     this.props.fetchAllNotifications(this.props.user.id)
   }
 
+  parseAllNotifications = (allNotifications) => {
+    return (
+      allNotifications.map((notification, index) => {
+        if (notification.text === 'mentorship request') {
+          return (
+            <li key={index}>
+              {notification.sender.first_name} {notification.sender.last_name} would like to ask for your mentorship.
+              <button onClick={() => this.props.acceptRequest(this.props.user.id, notification.sender.id)}>Accept</button>
+              {/* <button onClick={this.props.DeclineRequest}>Decline</button> */}
+            </li>
+          )
+        // } else if (notification.text === 'sent mentorship request') {
+        //   return (
+        //     <li key={index}>You have successfully requested mentorship from {notification.sender.first_name} {notification.sender.last_name}</li>
+        //   )
+        }
+      })
+    )
+  }
+
   render() {
     return (
       <div>
         <h1>Notifications</h1>
         <ul>
-          {this.props.allNotifications.map((notification, index) => <li key={index}>{notification.text} from {notification.recipient.first_name} {notification.recipient.last_name}</li>)}
+          {this.parseAllNotifications(this.props.allNotifications)}
         </ul>
       </div>
     )
