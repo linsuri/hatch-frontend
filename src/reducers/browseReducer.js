@@ -2,7 +2,7 @@ const initialState = {
   allMentors: null,
 }
 
-export default function browserReducer(state = initialState, action) {
+export default function browseReducer(state = initialState, action) {
 
   switch(action.type) {
     case 'SET_ALL_MENTORS':

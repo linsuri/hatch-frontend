@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux';
+import { ActionCable } from 'react-actioncable-provider';
 import * as actions from  '../actions';
 import Notifications from './Notifications'
 
@@ -19,6 +20,7 @@ import ChatRounded from '@material-ui/icons/ChatRounded';
 import NotificationsRounded from '@material-ui/icons/NotificationsRounded';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Badge from '@material-ui/core/Badge';
 
 const styles = {
   layout: {
@@ -45,6 +47,10 @@ const LoggedInHeader = (props) => {
 
   return (
     <div className={classes.root}>
+      <ActionCable
+        channel={{ channel: 'NotificationsChannel' }}
+        onReceived={this.handleReceivedNotification}
+      />
       <AppBar position="fixed">
         <div className={classes.layout}>
           <Toolbar>
@@ -69,13 +75,14 @@ const LoggedInHeader = (props) => {
                   <ChatRounded />
                 </IconButton>
               </Link>
-              {/* <Link to="/notifications" style={{ color:'white'}}> */}
               <IconButton
                 aria-owns={openNotifications ? 'notifications' : null}
                 aria-haspopup="true"
                 onClick={(event) =>  props.openNotificationsMenu(event)}
                 color="inherit">
-                <NotificationsRounded />
+                <Badge className={classes.margin} badgeContent={17} color="secondary">
+                  <NotificationsRounded />
+                </Badge>
               </IconButton>
               <Menu
                 id="notifications"
@@ -92,7 +99,6 @@ const LoggedInHeader = (props) => {
                 onClose={() => props.closeNotificationsMenu()}>
                 <Notifications />
               </Menu>
-              {/* </Link> */}
               <IconButton
                 aria-owns={openProfile ? 'account-circle' : null}
                 aria-haspopup="true"

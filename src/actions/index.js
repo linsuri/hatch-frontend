@@ -1,3 +1,3 @@
 export * from './user'
 export * from './actions'
-export * from './browser'
+export * from './browse'

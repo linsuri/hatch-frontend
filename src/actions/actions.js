@@ -26,21 +26,32 @@ export function closeNotificationsMenu() {
   }
 }
 
-// export const fetchAllNotifications = (user_id) => {
-//   return (dispatch) => {
-//     fetch("http://localhost:3000/api/v1/users")
-//     .then(res => res.json())
-//     .then(json => console.log(json.filter(user => user.id === user_id)))
-//   }
-// }
-//
-// export function setAllNotifications(user) {
-//   const allRelationships = [ ...user.active_relationships, ...user.passive_relationships ]
-//   return {
-//     type: 'SET_ALL_NOTIFICATIONS',
-//     payload: allRelationships,
-//   }
-// }
+export const fetchAllNotifications = (user_id) => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/users")
+    .then(res => res.json())
+    .then(json => json.find(user => user.id === user_id))
+    .then(user => {
+      dispatch(setAllNotifications(user))
+    })
+  }
+}
+
+export function setAllNotifications(user) {
+  let allNotifications = []
+  if (user.sent_notifications.length > 0 && user.received_notifications.length > 0) {
+    allNotifications = [...user.sent_notifications, ...user.received_notifications]
+  } else if (user.sent_notifications.length === 0 && user.received_notifications.length > 0) {
+    allNotifications = [...user.received_notifications]
+  } else if (user.sent_notifications.length > 0 && user.received_notifications.length === 0) {
+    allNotifications = [...user.sent_notifications]
+  }
+  // console.log("hey")
+  return {
+    type: 'SET_ALL_NOTIFICATIONS',
+    payload: allNotifications,
+  }
+}
 
 export function dashboardClickTab(event, value) {
   return {

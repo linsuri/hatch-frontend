@@ -2,7 +2,7 @@ import React from 'react'
 // import LoggedInHeader from './LoggedInHeader'
 import { connect } from 'react-redux';
 // import { compose } from 'redux';
-// import * as actions from  '../actions';
+import * as actions from  '../actions';
 // import withAuth from '../hocs/withAuth'
 import { API_ROOT, HEADERS } from '../constants';
 
@@ -21,7 +21,7 @@ const RequestMentorButton = (props) => {
         }
       })
     })
-    // .then(response => {debugger})
+    .then(res => res.json())
   }
 
   return (
@@ -37,4 +37,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(RequestMentorButton)
+export default connect(mapStateToProps, actions)(RequestMentorButton)

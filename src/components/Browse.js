@@ -53,7 +53,7 @@ function mapStateToProps(state) {
   // console.log('Dashboard state', state);
   return {
     user: state.usersReducer.user,
-    allMentors: state.browserReducer.allMentors
+    allMentors: state.browseReducer.allMentors
   }
 }
 

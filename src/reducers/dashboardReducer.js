@@ -4,7 +4,7 @@ const initialState = {
   dashboardTab: 0,
   conversations: [],
   activeConversation: null,
-  // allNotifications: [],
+  allNotifications: [],
   // details: {},
 }
 
@@ -20,8 +20,8 @@ export default function dashboardReducer(state = initialState, action) {
       return { ...state, notificationsMenu: action.payload }
     case 'CLOSE_NOTIFICATIONS_MENU':
       return { ...state, notificationsMenu: action.payload }
-    // case 'SET_ALL_NOTIFICATIONS':
-    //   return { ...state, allNotifications: action.payload }
+    case 'SET_ALL_NOTIFICATIONS':
+      return { ...state, allNotifications: action.payload }
 
     case 'DASHBOARD_CLICK_TAB':
       return { ...state, dashboardTab: action.payload }
