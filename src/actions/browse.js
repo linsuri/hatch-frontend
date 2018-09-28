@@ -30,6 +30,5 @@ export const requestMentorship = (mentee_id, mentor_id) => {
         }
       })
     })
-    // .then()
   }
 }

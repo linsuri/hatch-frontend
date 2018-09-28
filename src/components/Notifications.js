@@ -20,7 +20,7 @@ class Notifications extends React.Component {
             <li key={index}>
               {notification.sender.first_name} {notification.sender.last_name} would like to ask for your mentorship.
               <button onClick={() => this.props.acceptRequest(this.props.user.id, notification.sender.id)}>Accept</button>
-              {/* <button onClick={this.props.DeclineRequest}>Decline</button> */}
+              <button onClick={() => this.props.declineRequest(this.props.user.id, notification.sender.id)}>Decline</button>
             </li>
           )
         // } else if (notification.text === 'sent mentorship request') {

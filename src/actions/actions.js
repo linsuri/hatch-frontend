@@ -71,8 +71,24 @@ export const acceptRequest = (mentor_id, mentee_id) => {
         }
       })
     })
-    // .then(res => res.json())
-    // .then(json => console.log(json))
+  }
+}
+
+export const declineRequest = (mentor_id, mentee_id) => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/relationships", {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        relationship: {
+          mentee_id: mentee_id,
+          mentor_id: mentor_id,
+        }
+      })
+    })
   }
 }
 
