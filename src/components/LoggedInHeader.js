@@ -80,8 +80,8 @@ const LoggedInHeader = (props) => {
                 aria-haspopup="true"
                 onClick={(event) =>  props.openNotificationsMenu(event)}
                 color="inherit">
-                <Badge className={classes.margin} badgeContent={17} color="secondary">
-                  <NotificationsRounded />
+                <Badge style={{visibility:'hidden'}} className={classes.margin} badgeContent={17} color="secondary">
+                  <NotificationsRounded style={{visibility:'visible'}}/>
                 </Badge>
               </IconButton>
               <Menu
