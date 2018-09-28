@@ -23,10 +23,10 @@ class Notifications extends React.Component {
               <button onClick={() => this.props.declineRequest(this.props.user.id, notification.sender.id)}>Decline</button>
             </li>
           )
-        // } else if (notification.text === 'sent mentorship request') {
-        //   return (
-        //     <li key={index}>You have successfully requested mentorship from {notification.sender.first_name} {notification.sender.last_name}</li>
-        //   )
+        } else if (notification.text === 'mentorship accepted') {
+          return (
+            <li key={index}>{notification.sender.first_name} {notification.sender.last_name} has accepted your request.</li>
+          )
         }
       })
     )
