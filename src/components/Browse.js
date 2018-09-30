@@ -10,6 +10,7 @@ class Browse extends React.Component {
 
   componentDidMount() {
     this.props.fetchAllMentors()
+    this.props.fetchAllRelationships(this.props.user.id)
   }
 
   render() {
@@ -18,8 +19,6 @@ class Browse extends React.Component {
     const possibleMentorsIds = (allMentorsIds && usersMentorsIds ? allMentorsIds.filter(id => !usersMentorsIds.includes(id)) : null)
     const possibleMentorsIdsMinusSelf = (this.props.allMentors && this.props.user && possibleMentorsIds ? possibleMentorsIds.filter(id => id !== this.props.user.id) : null)
     const possibleMentors = (this.props.allMentors && this.props.user && possibleMentorsIdsMinusSelf ? this.props.allMentors.filter(mentor =>  possibleMentorsIdsMinusSelf.includes(mentor.id)) : this.props.allMentors)
-
-    // console.log('this.props.allMentors', this.props.allMentors)
 
     return (
       <div>
@@ -31,14 +30,18 @@ class Browse extends React.Component {
         <br />
 
         <h1>Mentors near {this.props.user.location.city}, {this.props.user.location.state}</h1>
-        {!this.props.allMentors ?
+        {!this.props.allMentors || !this.props.allRelationships ?
           null :
           <ul>
             {possibleMentors.map(mentor => (
+              this.props.allRelationships.find(relationship => relationship.mentor.id === mentor.id) ?
               <li key={mentor.id}>
                 {mentor.first_name} {mentor.last_name}
-                <RequestMentorButton mentor={mentor} />
-                {/* <button onClick={() => this.props.requestMentorship(this.props.user.id, mentor.id)}>Request Mentorship</button> */}
+                <RequestMentorButton disable={true} mentor={mentor} />
+              </li> :
+              <li key={mentor.id}>
+                {mentor.first_name} {mentor.last_name}
+                <RequestMentorButton disable={false} mentor={mentor} />
               </li>
             ))}
           </ul>
@@ -49,11 +52,16 @@ class Browse extends React.Component {
   }
 }
 
+
+  // this.props.allRelationships.map(relationship => (
+  //   relationship.mentor.id === mentor.id && relationship.accepted === false ?
+
 function mapStateToProps(state) {
   // console.log('Dashboard state', state);
   return {
     user: state.usersReducer.user,
-    allMentors: state.browseReducer.allMentors
+    allMentors: state.browseReducer.allMentors,
+    allRelationships: state.browseReducer.allRelationships,
   }
 }
 

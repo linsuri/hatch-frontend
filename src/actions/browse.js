@@ -7,10 +7,10 @@ export const fetchAllMentors = () => {
   }
 }
 
-export function setAllMentors(userData) {
+export function setAllMentors(mentors) {
   return {
     type: 'SET_ALL_MENTORS',
-    payload: userData,
+    payload: mentors,
   }
 }
 
@@ -30,5 +30,24 @@ export const requestMentorship = (mentee_id, mentor_id) => {
         }
       })
     })
+  }
+}
+
+export const fetchAllRelationships = (user_id) => {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/relationships")
+    .then(res => res.json())
+    .then(json => json.filter(relationship => relationship.mentee.id === user_id))
+    // .then(console.log)
+    .then(relationships => {
+      dispatch(setAllRelationships(relationships))
+    })
+  }
+}
+
+export function setAllRelationships(relationships) {
+  return {
+    type: 'SET_ALL_RELATIONSHIPS',
+    payload: relationships,
   }
 }

@@ -39,8 +39,6 @@ const styles = {
 
 const LoggedInHeader = (props) => {
 
-  console.log('LoggedInHeader', )
-
   const { classes } = props;
   const openProfile = Boolean(props.profileMenu);
   const openNotifications = Boolean(props.notificationsMenu);
