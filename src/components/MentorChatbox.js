@@ -31,39 +31,22 @@ class MentorChatbox extends React.Component {
       )
   };
 
-  handleClick = id => {
-    this.setState({ activeConversation: id });
-  };
-
-  handleReceivedConversation = response => {
+  handleReceivedMessage = response => {
     // console.log('response', response)
     const { message } = response;
     this.setState({
       messages: [...this.state.messages, message]
-    }, () => console.log('setting state of messages', this.state.messages));
+    });
   };
-
-  handleReceivedMessage = response => {
-    const { message } = response;
-    const conversations = [...this.state.conversations];
-    const conversation = conversations.find(
-      conversation => conversation.id === message.conversation_id
-    );
-    conversation.messages = [...conversation.messages, message];
-    this.setState({ conversations });
-  };
-
-
 
   handleClose = () => {
     this.props.onClose(this.props.selectedValue);
   };
 
   render() {
-    console.log('state', this.state)
+    // console.log('state', this.state)
     const { classes, ...other } = this.props;
     // const { conversations, messages } = this.props;
-    // console.log('MentorChatbox props', this.props)
 
     const { conversations, activeConversation } = this.state;
 
@@ -78,7 +61,7 @@ class MentorChatbox extends React.Component {
           <div className="messageList">
         <ActionCable
           channel={{ channel: 'MessagesChannel' }}
-          onReceived={this.handleReceivedConversation}
+          onReceived={this.handleReceivedMessage}
         />
         {/* {this.state.conversations.length ? (
           <Cable

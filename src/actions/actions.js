@@ -1,30 +1,31 @@
-export function openProfileMenu(event) {
-  return {
-    type: 'OPEN_PROFILE_MENU',
-    payload: event.currentTarget
-  }
-}
-
-export function closeProfileMenu() {
-  return {
-    type: 'CLOSE_PROFILE_MENU',
-    payload: null
-  }
-}
-
-export function openNotificationsMenu(event) {
-  return {
-    type: 'OPEN_NOTIFICATIONS_MENU',
-    payload: event.currentTarget
-  }
-}
-
-export function closeNotificationsMenu() {
-  return {
-    type: 'CLOSE_NOTIFICATIONS_MENU',
-    payload: null
-  }
-}
+// export function openProfileMenu(event) {
+//   return {
+//     type: 'OPEN_PROFILE_MENU',
+//     payload: event.currentTarget
+//   }
+// }
+//
+// export function closeProfileMenu() {
+//   return {
+//     type: 'CLOSE_PROFILE_MENU',
+//     payload: null
+//   }
+// }
+//
+// export function openNotificationsMenu(event) {
+//
+//   return {
+//     type: 'OPEN_NOTIFICATIONS_MENU',
+//     payload: event.currentTarget
+//   }
+// }
+//
+// export function closeNotificationsMenu() {
+//   return {
+//     type: 'CLOSE_NOTIFICATIONS_MENU',
+//     payload: null
+//   }
+// }
 
 export const fetchAllNotifications = (user_id) => {
   return (dispatch) => {
