@@ -48,7 +48,8 @@ class RequestMentorButton extends React.Component {
           variant="contained"
           color="secondary"
           disabled
-          className={classes.button}>
+          className={classes.button}
+          style={{display: 'block'}}>
           Requested Mentorship
         </Button>
       )
@@ -58,7 +59,8 @@ class RequestMentorButton extends React.Component {
           variant="contained"
           color="primary"
           className={classes.button}
-          onClick={this.requestMentorship}>
+          onClick={this.requestMentorship}
+          style={{display: 'block'}}>
           Request Mentorship
         </Button>
       )
