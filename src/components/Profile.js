@@ -48,14 +48,15 @@ const styles = theme => ({
 class Profile extends React.Component {
 
   state = {
+    id: this.props.user.id,
     first_name: this.props.user.first_name,
     last_name: this.props.user.last_name,
     email_address: this.props.user.email_address,
-    // password: '',
+    password: '',
     job_title: this.props.user.job_title,
     // location: ,
     expertise: '',
-    expertiseArray: [],
+    expertiseArray: this.props.user.expertiseArray.split(","),
     bio: this.props.user.bio,
     linkedin: this.props.user.linkedin,
     github: this.props.user.github,
@@ -93,7 +94,7 @@ class Profile extends React.Component {
 
   render() {
     const { classes } = this.props;
-    // console.log(this.state.mentor_status);
+    console.log(this.props);
     return (
       <div>
         <LoggedInHeader />
@@ -120,7 +121,10 @@ class Profile extends React.Component {
           onChange={this.handleSwitch('will_buy_coffee')}
           value="will_buy_coffee"
         /> Willing to buy coffee or beverage of choice for mentors
-        <form className={classes.container} noValidate autoComplete="off">
+        <form className={classes.container} noValidate autoComplete="off" onSubmit={(event) => {
+          event.preventDefault()
+          this.props.patchUserProfile(this.state)
+        }}>
           <TextField
             required
             id="first_name"
@@ -151,26 +155,16 @@ class Profile extends React.Component {
             onChange={this.handleChange}
             value={this.state.email_address}
           />
-          {/* <TextField
+          <TextField
             required
             type="password"
             id="password"
             label="Password"
-            defaultValue={}
             className={classes.textField}
             margin="normal"
             helperText="Required"
             onChange={this.handleChange}
             value={this.state.password}
-          /> */}
-          <TextField
-            id="job_title"
-            label="Job Title"
-            className={classes.textField}
-            margin="normal"
-            onChange={this.handleChange}
-            onKeyUp={this.handleAddToArray}
-            value={this.state.job_title}
           />
           <TextField
             id="location"
@@ -183,6 +177,15 @@ class Profile extends React.Component {
             onChange={this.handleChange}
             // value={this.state.location}
           />
+          <TextField
+            id="job_title"
+            label="Job Title"
+            className={classes.textField}
+            margin="normal"
+            onChange={this.handleChange}
+            onKeyUp={this.handleAddToArray}
+            value={this.state.job_title}
+          />
           {/* POST state once onSubmit like usual */}
           <TextField
             id="expertise"
@@ -193,7 +196,7 @@ class Profile extends React.Component {
             onKeyUp={this.handleAddToArray}
             value={this.state.expertise}
           />
-          {this.state.expertiseArray.length > 0 ?
+          {this.state.expertiseArray.length > 0 && this.state.expertiseArray[0] !== "" ?
             this.state.expertiseArray.map((data, index) => (<Chip
               key={index}
               label={data.label}
@@ -236,7 +239,7 @@ class Profile extends React.Component {
             onChange={this.handleChange}
             value={this.state.personal_website}
           />
-          <Button variant="contained" color="primary" className={classes.button}>
+          <Button type="submit" variant="contained" color="primary" className={classes.button}>
             Save
           </Button>
         </form>
