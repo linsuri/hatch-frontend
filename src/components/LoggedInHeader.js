@@ -124,13 +124,12 @@ class LoggedInHeader extends React.Component {
                   aria-owns={openNotifications ? 'notifications' : null}
                   aria-haspopup="true"
                   onClick={(event) =>  this.openNotificationsMenu(event)}
-                  color="inherit">
-                  <NotificationsRounded />
-                  {this.state.newNotification > 0 ?
-                    <div style={{borderRadius: '50%', backgroundColor: 'red', width: '10px', height: '10px'}}
-                    />
+                  color="inherit">                  {this.state.newNotification > 0 ?
+                    <Badge className={classes.margin} badgeContent={this.state.newNotification} color="secondary">
+                      <NotificationsRounded />
+                    </Badge>
                     :
-                    null
+                    <NotificationsRounded />
                   }
                 </IconButton>
                 <Menu
