@@ -1,10 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux';
-// import { compose } from 'redux';
-// import { ActionCable } from 'react-actioncable-provider';
+import { compose } from 'redux';
 import * as actions from  '../actions';
-// import withAuth from '../hocs/withAuth'
+import withAuth from '../hocs/withAuth'
 import { API_ROOT } from '../constants';
+
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    width: 350,
+    backgroundColor: theme.palette.background.paper,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
 
 class Notifications extends React.Component {
 
@@ -13,15 +30,16 @@ class Notifications extends React.Component {
   }
 
   parseAllNotifications = (allNotifications) => {
+    const { classes } = this.props;
     return (
       allNotifications.map((notification, index) => {
         if (notification.text === 'mentorship request') {
           return (
-            <li key={index}>
-              {notification.sender.first_name} {notification.sender.last_name} would like to ask for your mentorship.
-              <button onClick={() => this.props.acceptRequest(this.props.user.id, notification.sender.id)}>Accept</button>
-              <button onClick={() => this.props.declineRequest(this.props.user.id, notification.sender.id)}>Decline</button>
-            </li>
+            <ListItem style={{display: 'block'}} key={index}>
+              <ListItemText primary={`${notification.sender.first_name} ${notification.sender.last_name} would like to ask for your mentorship.`} />
+              <Button variant="contained" color="primary" className={classes.button} onClick={() => this.props.acceptRequest(this.props.user.id, notification.sender.id)}>Accept</Button>
+              <Button variant="contained" color="primary" className={classes.button} onClick={() => this.props.declineRequest(this.props.user.id, notification.sender.id)}>Decline</Button>
+            </ListItem>
           )
         } else if (notification.text === 'mentorship accepted') {
           return (
@@ -33,12 +51,13 @@ class Notifications extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div>
-        <h1>Notifications</h1>
-        <ul>
+      <div className={classes.root}>
+        <List component="nav">
           {this.parseAllNotifications(this.props.allNotifications)}
-        </ul>
+        </List>
       </div>
     )
   }
@@ -51,4 +70,7 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, actions)(Notifications)
+export default withAuth(compose(
+  withStyles(styles),
+  connect(mapStateToProps, actions)
+)(Notifications));
