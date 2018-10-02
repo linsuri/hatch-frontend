@@ -15,8 +15,18 @@ import Switch from '@material-ui/core/Switch';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: 'auto',
+    marginLeft: 150,
+    marginRight: 150,
+    position: 'relative',
+    top: 80,
+    zIndex: 1,
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -24,7 +34,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 800,
   },
   row: {
     display: 'flex',
@@ -34,14 +44,26 @@ const styles = theme => ({
     margin: 10,
   },
   bigAvatar: {
-    width: 60,
-    height: 60,
+    width: 180,
+    height: 180,
   },
   chip: {
     margin: theme.spacing.unit / 2,
   },
   button: {
     margin: theme.spacing.unit,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  paper: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
+    width: '70%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });
 
@@ -96,154 +118,151 @@ class Profile extends React.Component {
     const { classes } = this.props;
     // console.log(this.props);
     return (
-      <div>
+      <div className={classes.root}>
         <LoggedInHeader />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <h1>Profile</h1>
-        <Avatar
-          alt=""
-          src="/profile-placeholder.png"
-          className={classNames(classes.avatar, classes.bigAvatar)}
-        />
-        <Switch
-          checked={this.state.mentor_status}
-          onChange={this.handleSwitch('mentor_status')}
-          value="mentor_status"
-        /> Mentor Status
-        <br />
-        <Switch
-          checked={this.state.will_buy_coffee}
-          onChange={this.handleSwitch('will_buy_coffee')}
-          value="will_buy_coffee"
-        /> Willing to buy coffee or beverage of choice for mentors
-        <form className={classes.container} noValidate autoComplete="off" onSubmit={(event) => {
-          event.preventDefault()
-          this.props.patchUserProfile(this.state)
-        }}>
-          <TextField
-            required
-            id="first_name"
-            label="First Name"
-            className={classes.textField}
-            margin="normal"
-            helperText="Required"
-            onChange={this.handleChange}
-            value={this.state.first_name}
+        <Paper className={classes.paper} elevation={1}>
+          <Avatar
+            style={{marginLeft: 'auto', marginRight: 'auto'}}
+            alt=""
+            src="/profile-placeholder.png"
+            className={classNames(classes.avatar, classes.bigAvatar)}
           />
-          <TextField
-            required
-            id="last_name"
-            label="Last Name"
-            className={classes.textField}
-            margin="normal"
-            helperText="Required"
-            onChange={this.handleChange}
-            value={this.state.last_name}
-          />
-          <TextField
-            required
-            id="email_address"
-            label="Email Address"
-            className={classes.textField}
-            margin="normal"
-            helperText="Required"
-            onChange={this.handleChange}
-            value={this.state.email_address}
-          />
-          <TextField
-            required
-            type="password"
-            id="password"
-            label="Password"
-            className={classes.textField}
-            margin="normal"
-            helperText="Required"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <TextField
-            id="location"
-            label="Location"
-            // need to not hard code this
-            defaultValue="New York, NY"
-            className={classes.textField}
-            margin="normal"
-            helperText="Required"
-            onChange={this.handleChange}
-            // value={this.state.location}
-          />
-          <TextField
-            id="job_title"
-            label="Job Title"
-            className={classes.textField}
-            margin="normal"
-            onChange={this.handleChange}
-            onKeyUp={this.handleAddToArray}
-            value={this.state.job_title}
-          />
-          {/* POST state once onSubmit like usual */}
-          <TextField
-            id="expertise"
-            label="Expertise"
-            className={classes.textField}
-            margin="normal"
-            onChange={this.handleChange}
-            onKeyUp={this.handleAddToArray}
-            value={this.state.expertise}
-          />
-          {this.state.expertiseArray.length > 0 && this.state.expertiseArray[0] !== "" ?
-            this.state.expertiseArray.map((data, index) => (<Chip
-              key={index}
-              label={data.label}
-              onDelete={this.handleDeleteChip(data)}
-              className={classes.chip}
-            />)) :
-            null
-          }
-          <TextField
-            id="bio"
-            label="Bio"
-            multiline
-            rowsMax="4"
-            className={classes.textField}
-            margin="normal"
-            onChange={this.handleChange}
-            value={this.state.bio}
-          />
-          <TextField
-            id="linkedin"
-            label="LinkedIn"
-            className={classes.textField}
-            margin="normal"
-            onChange={this.handleChange}
-            value={this.state.linkedin}
-          />
-          <TextField
-            id="github"
-            label="Github"
-            className={classes.textField}
-            margin="normal"
-            onChange={this.handleChange}
-            value={this.state.github}
-          />
-          <TextField
-            id="personal_website"
-            label="Personal Website"
-            className={classes.textField}
-            margin="normal"
-            onChange={this.handleChange}
-            value={this.state.personal_website}
-          />
-          <Button type="submit" variant="contained" color="primary" className={classes.button}>
-            Save
-          </Button>
-        </form>
-
+          <div style={{width: '70%', marginLeft: 'auto', marginRight: 'auto'}}>
+            <Switch
+            checked={this.state.mentor_status}
+            onChange={this.handleSwitch('mentor_status')}
+            value="mentor_status"
+            /> Willing to mentor
+            <br />
+            <Switch
+              checked={this.state.will_buy_coffee}
+              onChange={this.handleSwitch('will_buy_coffee')}
+              value="will_buy_coffee"
+            /> Willing to buy coffee
+            <form className={classes.container} noValidate autoComplete="off" onSubmit={(event) => {
+              event.preventDefault()
+              this.props.patchUserProfile(this.state)
+            }}>
+              <TextField
+                required
+                id="first_name"
+                label="First Name"
+                className={classes.textField}
+                margin="normal"
+                helperText="Required"
+                onChange={this.handleChange}
+                value={this.state.first_name}
+              />
+              <TextField
+                required
+                id="last_name"
+                label="Last Name"
+                className={classes.textField}
+                margin="normal"
+                helperText="Required"
+                onChange={this.handleChange}
+                value={this.state.last_name}
+              />
+              <TextField
+                required
+                id="email_address"
+                label="Email Address"
+                className={classes.textField}
+                margin="normal"
+                helperText="Required"
+                onChange={this.handleChange}
+                value={this.state.email_address}
+              />
+              <TextField
+                required
+                type="password"
+                id="password"
+                label="Password"
+                className={classes.textField}
+                margin="normal"
+                helperText="Required"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
+              <TextField
+                id="location"
+                label="Location"
+                // need to not hard code this
+                defaultValue="New York, NY"
+                className={classes.textField}
+                margin="normal"
+                helperText="Required"
+                onChange={this.handleChange}
+                // value={this.state.location}
+              />
+              <TextField
+                id="job_title"
+                label="Job Title"
+                className={classes.textField}
+                margin="normal"
+                onChange={this.handleChange}
+                onKeyUp={this.handleAddToArray}
+                value={this.state.job_title}
+              />
+              {/* POST state once onSubmit like usual */}
+              <TextField
+                id="expertise"
+                label="Expertise"
+                className={classes.textField}
+                margin="normal"
+                onChange={this.handleChange}
+                onKeyUp={this.handleAddToArray}
+                value={this.state.expertise}
+              />
+              {this.state.expertiseArray.length > 0 && this.state.expertiseArray[0] !== "" ?
+              this.state.expertiseArray.map((data, index) => (<Chip
+                key={index}
+                label={data.label}
+                onDelete={this.handleDeleteChip(data)}
+                className={classes.chip}
+                />)) :
+                null
+              }
+              <TextField
+                id="bio"
+                label="Bio"
+                multiline
+                rowsMax="4"
+                className={classes.textField}
+                margin="normal"
+                onChange={this.handleChange}
+                value={this.state.bio}
+              />
+              <TextField
+                id="linkedin"
+                label="LinkedIn"
+                className={classes.textField}
+                margin="normal"
+                onChange={this.handleChange}
+                value={this.state.linkedin}
+              />
+              <TextField
+                id="github"
+                label="Github"
+                className={classes.textField}
+                margin="normal"
+                onChange={this.handleChange}
+                value={this.state.github}
+              />
+              <TextField
+                id="personal_website"
+                label="Personal Website"
+                className={classes.textField}
+                margin="normal"
+                onChange={this.handleChange}
+                value={this.state.personal_website}
+              />
+              <Button type="submit" variant="contained" color="primary" className={classes.button}>
+                Save
+              </Button>
+            </form>
+          </div>
+        </Paper>
       </div>
     )
   }
