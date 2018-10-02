@@ -57,8 +57,8 @@ class Browse extends React.Component {
           (possibleMentors.map(mentor => (
             this.props.allRelationships.find(relationship => relationship.mentor.id === mentor.id) ?
             <Paper className={classes.paper} elevation={1} key={mentor.id}>
-              <img src="/profile-placeholder.png" alt="Profile Pic" style={{width: '150px', height: '150px', borderRadius: '5%', display: 'inline-flex'}} />
-              <div style={{width: '465px', height: '150px', float: 'right'}}>
+              <img src="/profile-placeholder.png" alt="Profile Pic" style={{width: '150px', height: '150px', borderRadius: '5%'}} />
+              <div style={{width: '80%', height: '150px', float: 'right'}}>
                 <div className={classes.text}>
                   <Typography variant="headline" component="h3">
                     {mentor.first_name} {mentor.last_name}
@@ -76,8 +76,8 @@ class Browse extends React.Component {
               </div>
             </Paper> :
             <Paper className={classes.paper} elevation={1} key={mentor.id}>
-              <img src="/profile-placeholder.png" alt="Profile Pic" style={{width: '150px', height: '150px', borderRadius: '5%', display: 'inline-flex'}} />
-              <div style={{width: '465px', height: '150px', float: 'right'}}>
+              <img src="/profile-placeholder.png" alt="Profile Pic" style={{width: '150px', height: '150px', borderRadius: '5%'}} />
+              <div style={{width: '80%', height: '150px', float: 'right'}}>
                 <div className={classes.text}>
                   <Typography variant="headline" component="h3">
                     {mentor.first_name} {mentor.last_name}
