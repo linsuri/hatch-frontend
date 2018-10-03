@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import * as actions from  '../actions';
 import withAuth from '../hocs/withAuth'
-import { API_ROOT } from '../constants';
+// import { API_ROOT } from '../constants';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
-    width: '100%',
     width: 350,
     backgroundColor: theme.palette.background.paper,
   },
@@ -33,19 +32,21 @@ class Notifications extends React.Component {
     const { classes } = this.props;
     return (
       allNotifications.map((notification, index) => {
+        let final = null
         if (notification.text === 'mentorship request') {
-          return (
+          final = (
             <ListItem style={{display: 'block'}} key={index}>
               <ListItemText primary={`${notification.sender.first_name} ${notification.sender.last_name} would like to ask for your mentorship.`} />
               <Button variant="contained" color="primary" className={classes.button} onClick={() => this.props.acceptRequest(this.props.user.id, notification.sender.id)}>Accept</Button>
               <Button variant="contained" color="primary" className={classes.button} onClick={() => this.props.declineRequest(this.props.user.id, notification.sender.id)}>Decline</Button>
             </ListItem>
           )
-        } else if (notification.text === 'mentorship accepted') {
-          return (
+        } else {
+          final = (
             <li key={index}>{notification.sender.first_name} {notification.sender.last_name} has accepted your request.</li>
           )
         }
+        return final
       })
     )
   }

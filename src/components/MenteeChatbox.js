@@ -61,7 +61,7 @@ class MenteeChatbox extends React.Component {
     // const { conversations, messages } = this.props;
     // console.log('MenteeChatbox props', this.props)
 
-    const { conversations, activeConversation } = this.state;
+    // const { conversations, activeConversation } = this.state;
 
     return (
       <Dialog maxWidth="lg" onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
@@ -124,18 +124,18 @@ export default compose(
 )(MenteeChatbox);
 
 
-const findActiveConversation = (conversations, activeConversation) => {
-  return conversations.find(
-    conversation => conversation.id === activeConversation
-  );
-};
-
-const mapConversations = (conversations, handleClick) => {
-  return conversations.map(conversation => {
-    return (
-      <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-        {conversation.title}
-      </li>
-    );
-  });
-};
+// const findActiveConversation = (conversations, activeConversation) => {
+//   return conversations.find(
+//     conversation => conversation.id === activeConversation
+//   );
+// };
+//
+// const mapConversations = (conversations, handleClick) => {
+//   return conversations.map(conversation => {
+//     return (
+//       <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
+//         {conversation.title}
+//       </li>
+//     );
+//   });
+// };

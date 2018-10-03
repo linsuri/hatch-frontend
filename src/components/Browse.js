@@ -40,7 +40,7 @@ class Browse extends React.Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     const allMentorsIds = (this.props.allMentors ? this.props.allMentors.map(mentor => mentor.id) : null)
     const usersMentorsIds = (this.props.user ? this.props.user.mentors.map(mentor => mentor.id) : null)

@@ -5,11 +5,11 @@ import { compose } from 'redux';
 import * as actions from  '../actions';
 import withAuth from '../hocs/withAuth'
 
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Switch from '@material-ui/core/Switch';
 import Avatar from '@material-ui/core/Avatar';
@@ -92,10 +92,10 @@ class Profile extends React.Component {
   };
 
   handleAddToArray = event => {
-    console.log(event.key)
+    console.log('expertise', this.state.expertise)
     if (event.key === 'Enter') {
       this.setState({
-        expertiseArray: [ ...this.state.expertiseArray, {label: this.state.expertise}],
+        expertiseArray: [ ...this.state.expertiseArray, this.state.expertise],
       },
       () => this.setState({expertise: '',}))
     }
@@ -114,9 +114,38 @@ class Profile extends React.Component {
     this.setState({ [name]: event.target.checked });
   };
 
+  patchUserProfile = (stateUserData) => {
+    fetch("http://localhost:3000/api/v1/users",{
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          id: stateUserData.id,
+          first_name: stateUserData.first_name,
+          last_name: stateUserData.last_name,
+          email_address: stateUserData.email_address,
+          // password: '',
+          job_title: stateUserData.job_title,
+          // location: ,
+          expertiseArray: stateUserData.expertiseArray.join(","),
+          bio: stateUserData.bio,
+          linkedin: stateUserData.linkedin,
+          github: stateUserData.github,
+          personal_website: stateUserData.personal_website,
+          mentor_status: stateUserData.mentor_status,
+          will_buy_coffee: stateUserData.will_buy_coffee,
+        }
+      })
+    })
+    // this.setState({})
+  }
+
   render() {
     const { classes } = this.props;
-    // console.log(this.props);
+    console.log('state', this.state);
     return (
       <div className={classes.root}>
         <LoggedInHeader />
@@ -139,10 +168,7 @@ class Profile extends React.Component {
               onChange={this.handleSwitch('will_buy_coffee')}
               value="will_buy_coffee"
             /> Willing to buy coffee
-            <form className={classes.container} noValidate autoComplete="off" onSubmit={(event) => {
-              event.preventDefault()
-              this.props.patchUserProfile(this.state)
-            }}>
+            <form className={classes.container} noValidate autoComplete="off" >
               <TextField
                 required
                 id="first_name"
@@ -214,14 +240,15 @@ class Profile extends React.Component {
                 onKeyUp={this.handleAddToArray}
                 value={this.state.expertise}
               />
-              {this.state.expertiseArray.length > 0 && this.state.expertiseArray[0] !== "" ?
-              this.state.expertiseArray.map((data, index) => (<Chip
-                key={index}
-                label={data.label}
-                onDelete={this.handleDeleteChip(data)}
-                className={classes.chip}
-                />)) :
-                null
+              {this.state.expertiseArray.map((data, index) => {
+                return data !== "" ?
+                  (<Chip
+                    key={index}
+                    label={data}
+                    onDelete={this.handleDeleteChip(data)}
+                    className={classes.chip}
+                  />) :
+                  null})
               }
               <TextField
                 id="bio"
@@ -257,7 +284,7 @@ class Profile extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.personal_website}
               />
-              <Button type="submit" variant="contained" color="primary" className={classes.button}>
+              <Button variant="contained" color="primary" className={classes.button} onClick={() => this.patchUserProfile(this.state)}>
                 Save
               </Button>
             </form>
