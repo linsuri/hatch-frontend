@@ -7,7 +7,7 @@ import Dashboard from './Dashboard'
 import Browse from './Browse'
 import Profile from './Profile'
 // import Notifications from './Notifications'
-import AllChats from './AllChats'
+// import AllChats from './AllChats'
 
 const App = () => {
 

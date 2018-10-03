@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { ActionCable } from 'react-actioncable-provider';
@@ -76,8 +76,6 @@ class MentorChatbox extends React.Component {
     )
   }
 }
-
-{/* <p  key={message.id}>{message.text}</p>) */}
 
 function mapStateToProps(state) {
   // console.log('MentorChatbox state', state);

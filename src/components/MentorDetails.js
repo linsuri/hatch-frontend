@@ -35,21 +35,42 @@ class MentorDetails extends React.Component {
               <Typography gutterBottom variant="headline" component="h2">
                 {first_name} {last_name}
               </Typography>
-              <Typography component="p">
+              <Typography variant="subheading">
                 {job_title}
-                <br />
-                Expertise: {expertise}
-                <br />
-                Bio: {bio}
-                <br />
+              <Typography component="p">
                 Email Address: {email_address}
-                <br />
-                LinkedIn: {linkedin}
-                <br />
-                GitHub: {github}
-                <br />
-                Personal Website: {personal_website}
+              </Typography>  
               </Typography>
+              {expertise !== "" ?
+                <Typography component="p">
+                  Expertise: {expertise}
+                </Typography> :
+                null
+              }
+              {bio !== "" ?
+                <Typography component="p">
+                  Expertise: {bio}
+                </Typography> :
+                null
+              }
+              {linkedin !== "" ?
+                <Typography component="p">
+                  Expertise: {linkedin}
+                </Typography> :
+                null
+              }
+              {github !== "" ?
+                <Typography component="p">
+                  Expertise: {github}
+                </Typography> :
+                null
+              }
+              {personal_website !== "" ?
+                <Typography component="p">
+                  Expertise: {personal_website}
+                </Typography> :
+                null
+              }
             </CardContent>
           </CardActionArea>
         </Card>
