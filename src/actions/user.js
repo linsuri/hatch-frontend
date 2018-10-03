@@ -1,6 +1,6 @@
 export function signUp(email_address, password, first_name, last_name) {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("http://192.168.2.29:3000/api/v1/users", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export function signUp(email_address, password, first_name, last_name) {
 
 export function logIn(email_address, password) {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("http://192.168.2.29:3000/api/v1/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export function logIn(email_address, password) {
 export const fetchCurrentUser = () => {
   // takes the token in localStorage and finds out who it belongs to
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/profile", {
+    fetch("http://192.168.2.29:3000/api/v1/profile", {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -96,7 +96,7 @@ export const logOut = () => {
 
 // export const patchUserProfile = (stateUserData) => {
 //   return (dispatch) => {
-//     fetch("http://localhost:3000/api/v1/users",{
+//     fetch("http://192.168.2.29:3000/api/v1/users",{
 //       method: 'PATCH',
 //       headers: {
 //         'Content-Type': 'application/json',

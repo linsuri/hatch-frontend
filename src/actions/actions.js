@@ -29,7 +29,7 @@
 
 export const fetchAllNotifications = (user_id) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/users")
+    fetch("http://192.168.2.29:3000/api/v1/users")
     .then(res => res.json())
     .then(json => json.find(user => user.id === user_id))
     .then(user => {
@@ -58,7 +58,7 @@ export function setAllNotifications(user) {
 
 export const acceptRequest = (mentor_id, mentee_id) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/relationships", {
+    fetch("http://192.168.2.29:3000/api/v1/relationships", {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export const acceptRequest = (mentor_id, mentee_id) => {
 
 export const declineRequest = (mentor_id, mentee_id) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/relationships", {
+    fetch("http://192.168.2.29:3000/api/v1/relationships", {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

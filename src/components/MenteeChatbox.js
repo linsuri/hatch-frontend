@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { ActionCable } from 'react-actioncable-provider';
@@ -43,6 +44,7 @@ class MenteeChatbox extends React.Component {
     this.props.onClose(this.props.selectedValue);
   };
 
+
   render() {
     const { classes, ...other } = this.props;
 
@@ -58,7 +60,7 @@ class MenteeChatbox extends React.Component {
               {this.props.mentee ? `${this.props.mentee.first_name} ${this.props.mentee.last_name}` : null}
             </h3>
           </div>
-          <div style={{position: 'absolute', top: 65, width: '100%', height: '76%', overflow: 'scroll', display: 'block'}}>
+          <div style={{position: 'absolute', top: 66, width: '100%', height: '76%', overflow: 'scroll', display: 'block'}}>
             <ul style={{listStyleType: 'none'}}>
             {
               this.state.messages.map(message => {

@@ -62,8 +62,7 @@ class Mentee extends React.Component {
   };
 
   receivedMessage = (response) => {
-    console.log(response)
-    if (response.message.relationship.mentee.id === this.props.mentee.id && response.message.relationship.mentor.id === this.props.user.id) {
+    if (response.message.relationship.mentee.id === this.props.mentee.id && response.message.relationship.mentor.id === this.props.user.id && !this.state.chatOpen) {
       this.setState({
         newMessage: this.state.newMessage + 1,
       })

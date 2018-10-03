@@ -1,6 +1,6 @@
 export const fetchAllMentors = () => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/users")
+    fetch("http://192.168.2.29:3000/api/v1/users")
     .then(res => res.json())
     .then(json => json.filter(user => user.mentor_status === true && user.location.city === 'New York' && user.location.state === 'NY'))
     .then(mentors => dispatch(setAllMentors(mentors)))
@@ -16,7 +16,7 @@ export function setAllMentors(mentors) {
 
 export const requestMentorship = (mentee_id, mentor_id) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/relationships", {
+    fetch("http://192.168.2.29:3000/api/v1/relationships", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export const requestMentorship = (mentee_id, mentor_id) => {
 
 export const fetchAllRelationships = (user_id) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/relationships")
+    fetch("http://192.168.2.29:3000/api/v1/relationships")
     .then(res => res.json())
     .then(json => json.filter(relationship => relationship.mentee.id === user_id))
     // .then(console.log)

@@ -58,7 +58,7 @@ class MentorChatbox extends React.Component {
               {this.props.mentor ? `${this.props.mentor.first_name} ${this.props.mentor.last_name}` : null}
             </h3>
           </div>
-          <div style={{position: 'absolute', top: 65, width: '100%', height: '76%', overflow: 'scroll', display: 'block'}}>
+          <div style={{position: 'absolute', top: 66, width: '100%', height: '76%', overflow: 'scroll', display: 'block'}}>
             <ul style={{listStyleType: 'none'}}>
             {
               this.state.messages.map(message => {

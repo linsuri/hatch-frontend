@@ -73,7 +73,7 @@ class LoggedInHeader extends React.Component {
     if (response.notification.recipient.id === this.props.user.id) {
       this.setState({
         newNotification: this.state.newNotification + 1,
-      })
+      }, () => console.log('setting newNotification'))
     }
   }
 
