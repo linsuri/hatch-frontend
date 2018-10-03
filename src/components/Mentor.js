@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { ActionCable } from 'react-actioncable-provider';
 import * as actions from  '../actions';
 import MentorDetails from './MentorDetails'
 import MentorChatbox from './MentorChatbox'
@@ -14,6 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
 
 const styles = {
   card: {
@@ -31,6 +33,7 @@ class Mentor extends React.Component {
   state = {
     detailsOpen: false,
     chatOpen: false,
+    newMessage: 0,
   }
 
   handleDetailsClickOpen = () => {
@@ -42,6 +45,7 @@ class Mentor extends React.Component {
   handleChatClickOpen = () => {
     this.setState({
       chatOpen: true,
+      newMessage: 0,
     });
   };
 
@@ -56,6 +60,15 @@ class Mentor extends React.Component {
       chatOpen: false,
     });
   };
+
+  receivedMessage = (response) => {
+    console.log(response)
+    if (response.message.relationship.mentor.id === this.props.mentor.id && response.message.relationship.mentee.id === this.props.user.id) {
+      this.setState({
+        newMessage: this.state.newMessage + 1,
+      })
+    }
+  }
 
   render() {
     // console.log('Mentor props', this.props);
@@ -96,18 +109,33 @@ class Mentor extends React.Component {
             mentor={this.props.mentor}
             classes={classes}
           />
-          <Button
-            size="small"
-            color="primary"
-            onClick={this.handleChatClickOpen}
-          >
-            Chat
-          </Button>
+          <ActionCable
+            channel={{ channel: 'MessagesChannel' }}
+            onReceived={this.receivedMessage}
+          />
+          {this.state.newMessage > 0 ?
+            <Badge badgeContent={this.state.newMessage} color="secondary">
+              <Button
+                size="small"
+                color="primary"
+                onClick={this.handleChatClickOpen}
+              >
+                Chat
+              </Button>
+            </Badge>
+            :
+            <Button
+              size="small"
+              color="primary"
+              onClick={this.handleChatClickOpen}
+            >
+              Chat
+            </Button>
+          }
           <MentorChatbox
             open={this.state.chatOpen}
             onClose={this.handleChatClose}
             mentor={this.props.mentor}
-            // classes={classes}
           />
         </CardActions>
       </Card>
@@ -119,7 +147,13 @@ Mentor.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+function mapStateToProps(state) {
+  return {
+    user: state.usersReducer.user,
+  }
+}
+
 export default compose(
   withStyles(styles),
-  connect(null, actions)
+  connect(mapStateToProps, actions)
 )(Mentor);

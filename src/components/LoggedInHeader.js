@@ -70,7 +70,6 @@ class LoggedInHeader extends React.Component {
   }
 
   receivedNotification = (response) => {
-    console.log(response)
     if (response.notification.recipient.id === this.props.user.id) {
       this.setState({
         newNotification: this.state.newNotification + 1,
@@ -125,7 +124,7 @@ class LoggedInHeader extends React.Component {
                   aria-haspopup="true"
                   onClick={(event) =>  this.openNotificationsMenu(event)}
                   color="inherit">                  {this.state.newNotification > 0 ?
-                    <Badge className={classes.margin} badgeContent={this.state.newNotification} color="secondary">
+                    <Badge badgeContent={this.state.newNotification} color="secondary">
                       <NotificationsRounded />
                     </Badge>
                     :
