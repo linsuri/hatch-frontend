@@ -36,7 +36,7 @@ class MentorChatbox extends React.Component {
     const { message } = response;
     this.setState({
       messages: [...this.state.messages, message]
-    }, () => console.log(this.state.messages));
+    });
   };
 
   handleClose = () => {
@@ -44,13 +44,7 @@ class MentorChatbox extends React.Component {
   };
 
   render() {
-    console.log('state', this.state)
-    console.log('props', this.props)
     const { classes, ...other } = this.props;
-
-      // const { conversations, messages } = this.props;
-
-    // const { conversations, activeConversation } = this.state;
 
     return (
       <Dialog maxWidth="lg" onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={other.open}>
@@ -76,7 +70,6 @@ class MentorChatbox extends React.Component {
           </div>
           <div style={{position: 'absolute', bottom: 0, width: '100%', height: '13%', marginLeft: '25px'}}>
             {this.state.relationship ? <NewMessageForm relationship={this.state.relationship} /> : null}
-            {/* <NewMessageForm relationship={this.state.relationship} /> */}
           </div>
         </div>
       </Dialog>

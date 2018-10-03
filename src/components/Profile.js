@@ -140,12 +140,11 @@ class Profile extends React.Component {
         }
       })
     })
-    // this.setState({})
+    .then(res => res.status >= 200 ? alert("Your profile has been updated!") : alert("Something went wrong. Please try again later."))
   }
 
   render() {
     const { classes } = this.props;
-    console.log('state', this.state);
     return (
       <div className={classes.root}>
         <LoggedInHeader />

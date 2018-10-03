@@ -21,7 +21,7 @@ const App = () => {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/browse" component={Browse} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/chats" component={AllChats} />
+        {/* <Route exact path="/chats" component={AllChats} /> */}
         <Route render={() => <Redirect to="/dashboard" />} />
       </Switch>
     </Fragment>

@@ -115,11 +115,11 @@ class LoggedInHeader extends React.Component {
                     <ExploreRounded />
                   </IconButton>
                 </Link>
-                <Link to="/chats" style={{ color:'white'}}>
+                {/* <Link to="/chats" style={{ color:'white'}}>
                   <IconButton color="inherit">
                     <ChatRounded />
                   </IconButton>
-                </Link>
+                </Link> */}
                 <IconButton
                   aria-owns={openNotifications ? 'notifications' : null}
                   aria-haspopup="true"
