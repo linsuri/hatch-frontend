@@ -73,7 +73,7 @@ class Mentor extends React.Component {
     // console.log('Mentor props', this.props);
 
     const { classes } = this.props;
-    const { first_name, last_name, job_title } = this.props.mentor;
+    const { first_name, last_name, job_title, profile_pic } = this.props.mentor;
 
     return (
       <Card className={classes.card}>
@@ -82,7 +82,7 @@ class Mentor extends React.Component {
             component="img"
             className={classes.media}
             height="200"
-            image="/profile-placeholder.png"
+            image={profile_pic}
             title="title"
           />
           <CardContent>

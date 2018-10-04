@@ -70,10 +70,10 @@ class Mentee extends React.Component {
   }
 
   render() {
-    // console.log('Mentee props', this.props);
+    console.log('Mentee props', this.props);
 
     const { classes } = this.props;
-    const { first_name, last_name, job_title } = this.props.mentee;
+    const { first_name, last_name, job_title, profile_pic } = this.props.mentee;
 
     return (
       <Card className={classes.card}>
@@ -82,7 +82,7 @@ class Mentee extends React.Component {
             component="img"
             className={classes.media}
             height="200"
-            image="/profile-placeholder.png"
+            image={profile_pic}
             title="title"
           />
           <CardContent>
