@@ -76,6 +76,7 @@ class Profile extends React.Component {
     email_address: this.props.user.email_address,
     password: '',
     job_title: this.props.user.job_title,
+    profile_pic: this.props.user.profile_pic,
     // location: ,
     expertise: '',
     expertiseArray: this.props.user.expertiseArray.split(","),
@@ -126,6 +127,7 @@ class Profile extends React.Component {
           first_name: stateUserData.first_name,
           last_name: stateUserData.last_name,
           email_address: stateUserData.email_address,
+          // profile_pic: stateUserData.profile_pic,
           // password: '',
           job_title: stateUserData.job_title,
           // location: ,
@@ -144,14 +146,16 @@ class Profile extends React.Component {
 
   render() {
     const { classes } = this.props;
+
+    console.log('profile state', this.state)
     return (
       <div className={classes.root}>
         <LoggedInHeader />
         <Paper className={classes.paper} elevation={1}>
           <Avatar
             style={{marginLeft: 'auto', marginRight: 'auto'}}
-            alt=""
-            src="/profile-placeholder.png"
+            alt="Profile Pic"
+            src={this.state.profile_pic}
             className={classNames(classes.avatar, classes.bigAvatar)}
           />
           <div style={{width: '70%', marginLeft: 'auto', marginRight: 'auto'}}>

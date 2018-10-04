@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import store from './store';
 import { API_WS_ROOT } from './constants';
 
@@ -18,4 +18,4 @@ ReactDOM.render(
     </Provider>
   </ActionCableProvider>,
   document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
