@@ -1,4 +1,4 @@
-export function signUp(email_address, password, first_name, last_name) {
+export const signUp = (email_address, password, first_name, last_name) => {
   return (dispatch) => {
     fetch("http://192.168.2.29:3000/api/v1/users", {
       method: 'POST',
@@ -23,7 +23,7 @@ export function signUp(email_address, password, first_name, last_name) {
         }
       })
     .then(json => {
-      console.log(json)
+      // console.log(json)
       localStorage.setItem('jwt', json.jwt)
       dispatch({ type: 'SET_CURRENT_USER', payload: json.user })
     })
@@ -31,7 +31,7 @@ export function signUp(email_address, password, first_name, last_name) {
   }
 }
 
-export function logIn(email_address, password) {
+export const logIn = (email_address, password) => {
   return (dispatch) => {
     fetch("http://192.168.2.29:3000/api/v1/login", {
       method: 'POST',
@@ -62,7 +62,6 @@ export function logIn(email_address, password) {
 }
 
 export const fetchCurrentUser = () => {
-  // takes the token in localStorage and finds out who it belongs to
   return (dispatch) => {
     fetch("http://192.168.2.29:3000/api/v1/profile", {
       method: 'GET',
@@ -75,20 +74,18 @@ export const fetchCurrentUser = () => {
   }
 }
 
-export function setCurrentUser(userData) {
-  return {
-    type: 'SET_CURRENT_USER',
-    payload: userData,
-  }
-}
+export const setCurrentUser = userData => ({
+  type: 'SET_CURRENT_USER',
+  payload: userData,
+})
 
-export const failedLogin = (errorMsg) => ({
+export const failedLogin = errorMsg => ({
   type: 'FAILED_LOGIN',
   payload: errorMsg
 })
 
 export const logOut = () => {
-  return dispatch => {
+  return (dispatch) => {
     localStorage.clear()
     dispatch({ type: 'LOG_OUT' })
   }
@@ -123,3 +120,30 @@ export const logOut = () => {
 //     })
 //   }
 // }
+
+export const receivedNotifications = response => ({
+  type: 'RECEIVED_NOTIFICATIONS',
+  payload: response.notification,
+})
+
+export const clearNotifications = (user_id) => {
+  return (dispatch) => {
+    fetch('http://192.168.2.29:3000/api/v1/notifications', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        notification: {
+          recipient_id: user_id,
+          opened: true,
+        }
+      })
+    })
+  .then(res => res.json())
+  .then(json => {
+    dispatch({ type: 'CLEAR_NOTIFICATIONS' })
+  })
+  }
+}

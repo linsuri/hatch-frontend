@@ -1,18 +1,25 @@
 import React, { Fragment } from 'react'
-import './App.css'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { ActionCable } from 'react-actioncable-provider'
+import * as actions from  '../actions'
 import Signup from './Signup'
 import Login from './Login'
 import Dashboard from './Dashboard'
 import Browse from './Browse'
 import Profile from './Profile'
-// import Notifications from './Notifications'
-// import AllChats from './AllChats'
 
-const App = () => {
+const App = (props) => {
 
   return (
     <Fragment>
+      <ActionCable
+        channel={{ channel: 'NotificationsChannel' }}
+        onReceived={props.receivedNotifications} />
+      <ActionCable
+        channel={{ channel: 'MessagesChannel' }}
+        onReceived={props.receivedMessage} />
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
 
@@ -21,7 +28,6 @@ const App = () => {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/browse" component={Browse} />
         <Route exact path="/profile" component={Profile} />
-        {/* <Route exact path="/chats" component={AllChats} /> */}
         <Route render={() => <Redirect to="/dashboard" />} />
       </Switch>
     </Fragment>
@@ -29,4 +35,7 @@ const App = () => {
 
 }
 
-export default withRouter(App)
+export default compose(
+  withRouter,
+  connect(null, actions)
+)(App)

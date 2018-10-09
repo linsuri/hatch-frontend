@@ -42,7 +42,7 @@ class LoggedInHeader extends React.Component {
   state = {
     profileMenu: null,
     notificationsMenu: null,
-    newNotification: 0,
+    // newNotification: 0,
   }
 
   openProfileMenu = (event) => {
@@ -60,7 +60,7 @@ class LoggedInHeader extends React.Component {
   openNotificationsMenu = (event) => {
     this.setState({
       notificationsMenu: event.currentTarget,
-    }, this.clearNotifications)
+    }, this.props.clearNotifications(this.props.user.id))
   }
 
   closeNotificationsMenu = () => {
@@ -69,21 +69,22 @@ class LoggedInHeader extends React.Component {
     })
   }
 
-  receivedNotification = (response) => {
-    if (response.notification.recipient.id === this.props.user.id) {
-      this.setState({
-        newNotification: this.state.newNotification + 1,
-      }, () => console.log('setting newNotification'))
-    }
-  }
+  // receivedNotification = (response) => {
+  //   if (response.notification.recipient.id === this.props.user.id) {
+  //     this.setState({
+  //       newNotification: this.state.newNotification + 1,
+  //     }, () => console.log('setting newNotification'))
+  //   }
+  // }
 
-  clearNotifications = () => {
-    this.setState({
-      newNotification: 0,
-    })
-  }
+  // clearNotifications = () => {
+  //   this.setState({
+  //     newNotification: 0,
+  //   })
+  // }
 
   render() {
+    console.log('header props', this.props)
 
     const { classes } = this.props
     const openProfile = Boolean(this.state.profileMenu)
@@ -93,7 +94,7 @@ class LoggedInHeader extends React.Component {
       <div className={classes.root}>
         <ActionCable
           channel={{ channel: 'NotificationsChannel' }}
-          onReceived={this.receivedNotification}
+          onReceived={this.props.receivedNotification}
         />
         <AppBar position="fixed">
           <div className={classes.layout}>
@@ -123,8 +124,8 @@ class LoggedInHeader extends React.Component {
                   aria-owns={openNotifications ? 'notifications' : null}
                   aria-haspopup="true"
                   onClick={(event) =>  this.openNotificationsMenu(event)}
-                  color="inherit">                  {this.state.newNotification > 0 ?
-                    <Badge badgeContent={this.state.newNotification} color="secondary">
+                  color="inherit">                  {this.props.newNotifications > 0 ?
+                    <Badge badgeContent={this.props.newNotifications} color="secondary">
                       <NotificationsRounded />
                     </Badge>
                     :
@@ -190,7 +191,7 @@ function mapStateToProps(state) {
     profileMenu: state.dashboardReducer.profileMenu,
     notificationsMenu: state.dashboardReducer.notificationsMenu,
     logOut: state.usersReducer.logOut,
-    // allNotifications: state.dashboardReducer.allNotifications
+    newNotifications: state.usersReducer.newNotifications
   }
 }
 
