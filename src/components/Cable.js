@@ -1,5 +1,5 @@
-// import React, { Fragment } from 'react';
-// import { ActionCable } from 'react-actioncable-provider';
+// import React, { Fragment } from 'react'
+// import { ActionCable } from 'react-actioncable-provider'
 //
 // const Cable = ({ conversations, handleReceivedMessage }) => {
 //   console.log('Cable conversations', conversations)
@@ -12,10 +12,10 @@
 //             channel={{ channel: 'MessagesChannel', conversation: conversation.id }}
 //             onReceived={handleReceivedMessage}
 //           />
-//         );
+//         )
 //       })}
 //     </Fragment>
-//   );
-// };
+//   )
+// }
 //
-// export default Cable;
+// export default Cable

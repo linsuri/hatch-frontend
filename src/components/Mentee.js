@@ -1,21 +1,21 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { ActionCable } from 'react-actioncable-provider';
-import * as actions from  '../actions/actions';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { ActionCable } from 'react-actioncable-provider'
+import * as actions from  '../actions/actions'
 import MenteeDetails from './MenteeDetails'
 import MenteeChatbox from './MenteeChatbox'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Badge from '@material-ui/core/Badge'
 
 const styles = {
   card: {
@@ -26,7 +26,7 @@ const styles = {
   media: {
     objectFit: 'cover',
   },
-};
+}
 
 class Mentee extends React.Component {
 
@@ -39,27 +39,27 @@ class Mentee extends React.Component {
   handleDetailsClickOpen = () => {
     this.setState({
       detailsOpen: true,
-    });
-  };
+    })
+  }
 
   handleChatClickOpen = () => {
     this.setState({
       chatOpen: true,
       newMessage: 0,
-    });
-  };
+    })
+  }
 
   handleDetailsClose = () => {
     this.setState({
       detailsOpen: false,
-    });
-  };
+    })
+  }
 
   handleChatClose = () => {
     this.setState({
       chatOpen: false,
-    });
-  };
+    })
+  }
 
   receivedMessage = (response) => {
     if (response.message.relationship.mentee.id === this.props.mentee.id && response.message.relationship.mentor.id === this.props.user.id && !this.state.chatOpen) {
@@ -70,10 +70,10 @@ class Mentee extends React.Component {
   }
 
   render() {
-    console.log('Mentee props', this.props);
+    console.log('Mentee props', this.props)
 
-    const { classes } = this.props;
-    const { first_name, last_name, job_title, profile_pic } = this.props.mentee;
+    const { classes } = this.props
+    const { first_name, last_name, job_title, profile_pic } = this.props.mentee
 
     return (
       <Card className={classes.card}>
@@ -144,7 +144,7 @@ class Mentee extends React.Component {
 
 Mentee.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 function mapStateToProps(state) {
   return {
@@ -155,4 +155,4 @@ function mapStateToProps(state) {
 export default compose(
   withStyles(styles),
   connect(mapStateToProps, actions)
-)(Mentee);
+)(Mentee)

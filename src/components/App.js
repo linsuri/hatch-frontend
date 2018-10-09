@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import './App.css';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import React, { Fragment } from 'react'
+import './App.css'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import Signup from './Signup'
 import Login from './Login'
 import Dashboard from './Dashboard'
@@ -25,7 +25,7 @@ const App = () => {
         <Route render={() => <Redirect to="/dashboard" />} />
       </Switch>
     </Fragment>
-  );
+  )
 
 }
 

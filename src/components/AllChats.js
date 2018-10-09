@@ -1,8 +1,8 @@
 import React from 'react'
 import LoggedInHeader from './LoggedInHeader'
-// import { connect } from 'react-redux';
-// import { compose } from 'redux';
-// import * as actions from  '../actions';
+// import { connect } from 'react-redux'
+// import { compose } from 'redux'
+// import * as actions from  '../actions'
 import withAuth from '../hocs/withAuth'
 
 const AllChats = () => {

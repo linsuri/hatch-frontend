@@ -11,6 +11,6 @@ export default function browseReducer(state = initialState, action) {
     case 'SET_ALL_RELATIONSHIPS':
       return { ...state, allRelationships: action.payload }
     default:
-      return state;
+      return state
   }
 }

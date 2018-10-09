@@ -1,14 +1,14 @@
 import React from 'react'
 import LoggedInHeader from './LoggedInHeader'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import * as actions from  '../actions';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import * as actions from  '../actions'
 import withAuth from '../hocs/withAuth'
 import RequestMentorButton from './RequestMentorButton'
 
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
   root: {
@@ -30,7 +30,7 @@ const styles = theme => ({
   text: {
     margin: theme.spacing.unit,
   },
-});
+})
 
 class Browse extends React.Component {
 
@@ -40,7 +40,7 @@ class Browse extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     const allMentorsIds = (this.props.allMentors ? this.props.allMentors.map(mentor => mentor.id) : null)
     const usersMentorsIds = (this.props.user ? this.props.user.mentors.map(mentor => mentor.id) : null)
@@ -107,7 +107,7 @@ class Browse extends React.Component {
   //   relationship.mentor.id === mentor.id && relationship.accepted === false ?
 
 function mapStateToProps(state) {
-  // console.log('Dashboard state', state);
+  // console.log('Dashboard state', state)
   return {
     user: state.usersReducer.user,
     allMentors: state.browseReducer.allMentors,

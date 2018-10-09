@@ -1,13 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { API_ROOT, HEADERS } from '../constants';
+import React from 'react'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { API_ROOT, HEADERS } from '../constants'
 // import withAuth from '../hocs/withAuth'
 
-import PropTypes from 'prop-types';
-// import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types'
+// import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
 
 const styles = theme => ({
   textField: {
@@ -15,22 +15,22 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 530
   },
-});
+})
 
 class NewMessageForm extends React.Component {
   state = {
     text: '',
     relationship_id: this.props.relationship.id,
     user_id: this.props.user_id
-  };
+  }
 
   // componentWillReceiveProps = nextProps => {
-  //   this.setState({ conversation_id: nextProps.conversation_id });
-  // };
+  //   this.setState({ conversation_id: nextProps.conversation_id })
+  // }
 
   handleChange = event => {
-    this.setState({ text: event.target.value });
-  };
+    this.setState({ text: event.target.value })
+  }
 
   handleSubmit = event => {
     if (event.key === 'Enter' && this.state.text !== '') {
@@ -39,13 +39,13 @@ class NewMessageForm extends React.Component {
         headers: HEADERS,
         body: JSON.stringify({message: this.state})
       })
-      this.setState({ text: '' });
+      this.setState({ text: '' })
     }
-  };
+  }
 
   render = () => {
     // console.log('newmessage props', this.props)
-    const { classes } = this.props;
+    const { classes } = this.props
 
     return (
       <div className="newMessageForm">
@@ -69,16 +69,16 @@ class NewMessageForm extends React.Component {
           <input type="submit" />
         </form> */}
       </div>
-    );
-  };
+    )
+  }
 }
 
 NewMessageForm.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 function mapStateToProps(state) {
-  // console.log('Dashboard state', state);
+  // console.log('Dashboard state', state)
   return {
     user_id: state.usersReducer.user.id,
   }
@@ -87,7 +87,7 @@ function mapStateToProps(state) {
 // export default withAuth(compose(
 //   withStyles(styles),
 //   connect(mapStateToProps, null)
-// )(NewMessageForm));
+// )(NewMessageForm))
 export default compose(
   withStyles(styles),
   connect(mapStateToProps, null)

@@ -1,14 +1,14 @@
-// import React from 'react';
-// import { API_ROOT, HEADERS } from '../constants';
+// import React from 'react'
+// import { API_ROOT, HEADERS } from '../constants'
 //
 // class NewConversationForm extends React.Component {
 //   state = {
 //     title: ''
-//   };
+//   }
 //
 //   handleChange = e => {
-//     this.setState({ title: e.target.value });
-//   };
+//     this.setState({ title: e.target.value })
+//   }
 //
 //   handleSubmit = e => {
 //     e.preventDefault()
@@ -16,9 +16,9 @@
 //       method: 'POST',
 //       headers: HEADERS,
 //       body: JSON.stringify(this.state)
-//     });
-//     this.setState({ title: '' });
-//   };
+//     })
+//     this.setState({ title: '' })
+//   }
 //
 //   render = () => {
 //     return (
@@ -34,8 +34,8 @@
 //           <input type="submit" />
 //         </form>
 //       </div>
-//     );
-//   };
+//     )
+//   }
 // }
 //
-// export default NewConversationForm;
+// export default NewConversationForm

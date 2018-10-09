@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export default function dashboardReducer(state = initialState, action) {
-  // console.log('dashboardReducer', state, action);
+  // console.log('dashboardReducer', state, action)
 
   switch(action.type) {
     // case 'OPEN_PROFILE_MENU':
@@ -30,6 +30,6 @@ export default function dashboardReducer(state = initialState, action) {
     case 'SET_ACTIVE_CONVERSATION':
       return { ...state, activeConversation: action.payload }
     default:
-      return state;
+      return state
   }
 }

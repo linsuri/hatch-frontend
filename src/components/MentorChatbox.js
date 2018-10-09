@@ -1,17 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { ActionCable } from 'react-actioncable-provider';
-import * as actions from  '../actions';
-import { API_ROOT } from '../constants';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { ActionCable } from 'react-actioncable-provider'
+import * as actions from  '../actions'
+import { API_ROOT } from '../constants'
 // import Cable from './Cable'
 // import NewConversationForm from './NewConversationForm'
-// import MessagesArea from './MessagesArea';
+// import MessagesArea from './MessagesArea'
 import NewMessageForm from './NewMessageForm'
 
 
-// import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
+// import { withStyles } from '@material-ui/core/styles'
+import Dialog from '@material-ui/core/Dialog'
 
 class MentorChatbox extends React.Component {
 
@@ -19,7 +19,7 @@ class MentorChatbox extends React.Component {
     relationship: null,
     messages: [],
     // activeConversation: null
-  };
+  }
 
   componentDidMount = () => {
     fetch(`${API_ROOT}/api/v1/relationships`)
@@ -29,22 +29,22 @@ class MentorChatbox extends React.Component {
         messages: json.filter(relationship => relationship.mentee.id === this.props.user.id).find(relationship => relationship.mentor.id === this.props.mentor.id).messages,
       })
       )
-  };
+  }
 
   handleReceivedMessage = response => {
     // console.log('response', response)
-    const { message } = response;
+    const { message } = response
     this.setState({
       messages: [...this.state.messages, message]
-    });
-  };
+    })
+  }
 
   handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
-  };
+    this.props.onClose(this.props.selectedValue)
+  }
 
   render() {
-    const { classes, ...other } = this.props;
+    const { classes, ...other } = this.props
 
     return (
       <Dialog maxWidth="lg" onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={other.open}>
@@ -78,7 +78,7 @@ class MentorChatbox extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('MentorChatbox state', state);
+  // console.log('MentorChatbox state', state)
   return {
     user: state.usersReducer.user,
     // conversations: state.dashboardReducer.conversations,
@@ -89,14 +89,14 @@ function mapStateToProps(state) {
 export default compose(
   // withStyles(styles),
   connect(mapStateToProps, actions)
-)(MentorChatbox);
+)(MentorChatbox)
 
 //
 // const findActiveConversation = (conversations, activeConversation) => {
 //   return conversations.find(
 //     conversation => conversation.id === activeConversation
-//   );
-// };
+//   )
+// }
 //
 // const mapConversations = (conversations, handleClick) => {
 //   return conversations.map(conversation => {
@@ -104,6 +104,6 @@ export default compose(
 //       <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
 //         {conversation.title}
 //       </li>
-//     );
-//   });
-// };
+//     )
+//   })
+// }

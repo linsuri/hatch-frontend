@@ -1,19 +1,19 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import * as actions from  '../actions';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import * as actions from  '../actions'
 // import withAuth from '../hocs/withAuth'
-import { API_ROOT, HEADERS } from '../constants';
+import { API_ROOT, HEADERS } from '../constants'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-});
+})
 
 class RequestMentorButton extends React.Component {
 
@@ -40,7 +40,7 @@ class RequestMentorButton extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     if (this.state.disabled === true || this.props.disable === true) {
       return (
@@ -71,7 +71,7 @@ class RequestMentorButton extends React.Component {
 
 RequestMentorButton.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 function mapStateToProps(state) {
   return {

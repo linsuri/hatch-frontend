@@ -1,26 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { compose } from 'redux';
-import { ActionCable } from 'react-actioncable-provider';
-import * as actions from  '../actions';
+import { compose } from 'redux'
+import { ActionCable } from 'react-actioncable-provider'
+import * as actions from  '../actions'
 import Notifications from './Notifications'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import DashboardRounded from '@material-ui/icons/DashboardRounded';
-import ExploreRounded from '@material-ui/icons/ExploreRounded';
-// import ChatRounded from '@material-ui/icons/ChatRounded';
-import NotificationsRounded from '@material-ui/icons/NotificationsRounded';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Badge from '@material-ui/core/Badge';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+// import MenuIcon from '@material-ui/icons/Menu'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import DashboardRounded from '@material-ui/icons/DashboardRounded'
+import ExploreRounded from '@material-ui/icons/ExploreRounded'
+// import ChatRounded from '@material-ui/icons/ChatRounded'
+import NotificationsRounded from '@material-ui/icons/NotificationsRounded'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import Badge from '@material-ui/core/Badge'
 
 const styles = {
   layout: {
@@ -35,7 +35,7 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-};
+}
 
 class LoggedInHeader extends React.Component {
 
@@ -85,9 +85,9 @@ class LoggedInHeader extends React.Component {
 
   render() {
 
-    const { classes } = this.props;
-    const openProfile = Boolean(this.state.profileMenu);
-    const openNotifications = Boolean(this.state.notificationsMenu);
+    const { classes } = this.props
+    const openProfile = Boolean(this.state.profileMenu)
+    const openNotifications = Boolean(this.state.notificationsMenu)
 
     return (
       <div className={classes.root}>
@@ -182,7 +182,7 @@ class LoggedInHeader extends React.Component {
 
 LoggedInHeader.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 function mapStateToProps(state) {
   return {
@@ -197,4 +197,4 @@ function mapStateToProps(state) {
 export default compose(
   withStyles(styles),
   connect(mapStateToProps, actions)
-)(LoggedInHeader);
+)(LoggedInHeader)

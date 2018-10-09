@@ -1,22 +1,22 @@
 import React from 'react'
 
-// import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Dialog from '@material-ui/core/Dialog';
-import Typography from '@material-ui/core/Typography';
+// import PropTypes from 'prop-types'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+// import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Dialog from '@material-ui/core/Dialog'
+import Typography from '@material-ui/core/Typography'
 
 class MentorDetails extends React.Component {
 
   handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
-  };
+    this.props.onClose(this.props.selectedValue)
+  }
 
   render() {
-    const { classes, ...other } = this.props;
+    const { classes, ...other } = this.props
     // console.log('MentorDetails props', this.props)
     const { first_name, last_name, job_title, expertise, bio, email_address, linkedin, github, personal_website } = this.props.mentor
 

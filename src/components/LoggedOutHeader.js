@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-// import MenuIcon from '@material-ui/icons/Menu';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+// import MenuIcon from '@material-ui/icons/Menu'
 
 const styles = {
   layout: {
@@ -22,10 +22,10 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-};
+}
 
 const LoggedOutHeader = (props) => {
-  const { classes } = props;
+  const { classes } = props
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
@@ -55,6 +55,6 @@ const LoggedOutHeader = (props) => {
 
 LoggedOutHeader.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(LoggedOutHeader);
+export default withStyles(styles)(LoggedOutHeader)

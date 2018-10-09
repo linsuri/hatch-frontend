@@ -1,21 +1,21 @@
 import React from 'react'
 import LoggedInHeader from './LoggedInHeader'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import * as actions from  '../actions';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import * as actions from  '../actions'
 import withAuth from '../hocs/withAuth'
 
-// import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-// import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import Switch from '@material-ui/core/Switch';
-import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
+// import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+// import MenuItem from '@material-ui/core/MenuItem'
+import TextField from '@material-ui/core/TextField'
+import Switch from '@material-ui/core/Switch'
+import Avatar from '@material-ui/core/Avatar'
+import Chip from '@material-ui/core/Chip'
+import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
 
 const styles = theme => ({
   root: {
@@ -65,7 +65,7 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-});
+})
 
 class Profile extends React.Component {
 
@@ -89,8 +89,8 @@ class Profile extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.id]: event.target.value });
-  };
+    this.setState({ [event.target.id]: event.target.value })
+  }
 
   handleAddToArray = event => {
     if (event.key === 'Enter') {
@@ -103,16 +103,16 @@ class Profile extends React.Component {
 
   handleDeleteChip = data => () => {
     this.setState(state => {
-      const expertiseArray = (state.expertiseArray.length > 0 ? [...state.expertiseArray] : []);
-      const chipToDelete = expertiseArray.indexOf(data);
-      expertiseArray.splice(chipToDelete, 1);
-      return { expertiseArray };
-    });
-  };
+      const expertiseArray = (state.expertiseArray.length > 0 ? [...state.expertiseArray] : [])
+      const chipToDelete = expertiseArray.indexOf(data)
+      expertiseArray.splice(chipToDelete, 1)
+      return { expertiseArray }
+    })
+  }
 
   handleSwitch = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
+    this.setState({ [name]: event.target.checked })
+  }
 
   patchUserProfile = (stateUserData) => {
     fetch("http://192.168.2.29:3000/api/v1/users",{
@@ -145,7 +145,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     console.log('profile state', this.state)
     return (
@@ -299,7 +299,7 @@ class Profile extends React.Component {
 
 Profile.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 function mapStateToProps(state) {
   return {
@@ -310,4 +310,4 @@ function mapStateToProps(state) {
 export default withAuth(compose(
   withStyles(styles),
   connect(mapStateToProps, actions)
-)(Profile));
+)(Profile))

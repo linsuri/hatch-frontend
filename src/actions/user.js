@@ -70,8 +70,8 @@ export const fetchCurrentUser = () => {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
     })
-      .then(response => response.json())
-      .then((json) => dispatch(setCurrentUser(json.user)))
+    .then(response => response.json())
+    .then((json) => dispatch(setCurrentUser(json.user)))
   }
 }
 

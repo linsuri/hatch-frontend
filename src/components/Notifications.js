@@ -1,16 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import * as actions from  '../actions';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import * as actions from  '../actions'
 import withAuth from '../hocs/withAuth'
-// import { API_ROOT } from '../constants';
+// import { API_ROOT } from '../constants'
 
-// import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-// import ListItemText from '@material-ui/core/ListItemText';
-import Button from '@material-ui/core/Button';
+// import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+// import ListItemText from '@material-ui/core/ListItemText'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   root: {
@@ -20,7 +20,7 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-});
+})
 
 class Notifications extends React.Component {
 
@@ -29,7 +29,7 @@ class Notifications extends React.Component {
   }
 
   parseAllNotifications = (allNotifications) => {
-    const { classes } = this.props;
+    const { classes } = this.props
     return (
       allNotifications.map((notification, index) => {
         let final = null
@@ -52,7 +52,7 @@ class Notifications extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     return (
       <div className={classes.root}>
@@ -74,4 +74,4 @@ function mapStateToProps(state) {
 export default withAuth(compose(
   withStyles(styles),
   connect(mapStateToProps, actions)
-)(Notifications));
+)(Notifications))

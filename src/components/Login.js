@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import * as actions from  '../actions';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import * as actions from  '../actions'
 import LoggedOutHeader from './LoggedOutHeader'
 
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   root: {
@@ -46,7 +46,7 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
-});
+})
 
 class Login extends React.Component {
 
@@ -56,7 +56,6 @@ class Login extends React.Component {
   }
 
   handleChange = event => {
-    // console.log('handleChange', event.target)
     this.setState({
       [event.target.id]: event.target.value,
     })
@@ -72,66 +71,68 @@ class Login extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-    // console.log("Login props", this.props.location.state)
+    const { classes, loggedIn, error, location } = this.props
+    const { email_address, password } = this.state
 
-    return this.props.loggedIn ? (
-      <Redirect to={this.props.location.state ? this.props.location.state.currentPage : "/dashboard"} />
-    ) : (
-      <div className={classes.root}>
-        <LoggedOutHeader />
-        <Paper className={classes.paper} elevation={1}>
-          <form
-            onSubmit={this.handleLoginSubmit}
-            className={classes.container}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="email_address"
-              label="Email Address"
-              value={this.state.email_address}
-              onChange={this.handleChange}
-              className={classNames(classes.textField, classes.dense)}
-              margin="dense"
-            />
-            <TextField
-              id="password"
-              label="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              className={classes.textField}
-              type="password"
-              autoComplete="current-password"
-              margin="normal"
-            />
-            <Button
-              type="submit"
-              color="primary"
-              className={classes.button}>
-              Log In
-            </Button>
-          </form>
-        </Paper>
-        <p style={{textAlign: 'center'}}>Don't have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Sign Up</Link></p>
-      </div>
-    )
-
+    if (loggedIn) {
+      return <Redirect to={location.state ? location.state.currentPage : "/dashboard"} />
+    } else {
+      if (!error) {
+        return (
+          <div className={classes.root}>
+            <LoggedOutHeader />
+            <Paper className={classes.paper} elevation={1}>
+              <form
+                onSubmit={this.handleLoginSubmit}
+                className={classes.container}
+                noValidate
+                autoComplete="off">
+                <TextField
+                  id="email_address"
+                  label="Email Address"
+                  value={email_address}
+                  onChange={this.handleChange}
+                  className={classNames(classes.textField, classes.dense)}
+                  margin="dense" />
+                <TextField
+                  id="password"
+                  label="Password"
+                  value={password}
+                  onChange={this.handleChange}
+                  className={classes.textField}
+                  type="password"
+                  autoComplete="current-password"
+                  margin="normal" />
+                <Button
+                  type="submit"
+                  color="primary"
+                  className={classes.button}>
+                  Log In
+                </Button>
+              </form>
+            </Paper>
+            <p style={{ textAlign: 'center' }}>Don't have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Sign Up</Link></p>
+          </div>
+        )
+      } else {
+        alert(error)
+      }
+    }
   }
 }
 
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-const mapStateToProps = ({ usersReducer: { loggedIn } }) => {
-  // console.log("Signup state", state)
+const mapStateToProps = ({ usersReducer: { loggedIn, error } }) => {
   return {
     loggedIn,
+    error,
   }
 }
 
 export default compose(
   withStyles(styles),
   connect(mapStateToProps, actions)
-)(Login);
+)(Login)

@@ -2,31 +2,31 @@ import React from 'react'
 import LoggedInHeader from './LoggedInHeader'
 import MentorsContainer from './MentorsContainer'
 import MenteesContainer from './MenteesContainer'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import * as actions from  '../actions';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import * as actions from  '../actions'
 import withAuth from '../hocs/withAuth'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import SwipeableViews from 'react-swipeable-views';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import SwipeableViews from 'react-swipeable-views'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 
 function TabContainer({ children, dir }) {
   return (
     <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
       {children}
     </Typography>
-  );
+  )
 }
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
   dir: PropTypes.string.isRequired,
-};
+}
 
 const styles = theme => ({
   root: {
@@ -38,12 +38,12 @@ const styles = theme => ({
     top: 100,
     zIndex: 1,
   },
-});
+})
 
 const Dashboard = (props) => {
   // console.log('Dashboard props', props)
 
-    const { classes, theme } = props;
+    const { classes, theme } = props
 
     return (
       <div className={classes.root}>
@@ -73,16 +73,16 @@ const Dashboard = (props) => {
           </TabContainer>
         </SwipeableViews>
       </div>
-    );
+    )
 }
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-};
+}
 
 function mapStateToProps(state) {
-  // console.log('Dashboard state', state);
+  // console.log('Dashboard state', state)
   return {
     dashboardTab: state.dashboardReducer.dashboardTab,
   }
@@ -91,4 +91,4 @@ function mapStateToProps(state) {
 export default withAuth(compose(
   withStyles(styles, { withTheme: true }),
   connect(mapStateToProps, actions)
-)(Dashboard));
+)(Dashboard))
