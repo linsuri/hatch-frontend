@@ -17,9 +17,6 @@ const App = (props) => {
       <ActionCable
         channel={{ channel: 'NotificationsChannel' }}
         onReceived={props.receivedNotifications} />
-      <ActionCable
-        channel={{ channel: 'MessagesChannel' }}
-        onReceived={props.receivedMessage} />
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
 
