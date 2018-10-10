@@ -1,3 +1,5 @@
+import * from '../types'
+
 export const signUp = (email_address, password, first_name, last_name) => {
   return (dispatch) => {
     fetch("http://192.168.2.29:3000/api/v1/users", {
