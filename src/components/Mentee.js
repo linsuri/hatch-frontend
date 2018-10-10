@@ -5,6 +5,7 @@ import { ActionCable } from 'react-actioncable-provider'
 import * as actions from  '../actions'
 import MenteeDetails from './MenteeDetails'
 import MenteeChatbox from './MenteeChatbox'
+import { API_ROOT } from '../constants'
 
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -34,6 +35,8 @@ class Mentee extends React.Component {
     detailsOpen: false,
     chatOpen: false,
     newMessage: 0,
+    relationship: null,
+    messages: [],
   }
 
   handleDetailsClickOpen = () => {
@@ -43,10 +46,15 @@ class Mentee extends React.Component {
   }
 
   handleChatClickOpen = () => {
-    this.setState({
+    fetch(`${API_ROOT}/api/v1/relationships`)
+    .then(res => res.json())
+    .then(json => this.setState({
+      relationship: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id),
+      messages: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id).messages,
       chatOpen: true,
       newMessage: 0,
     })
+    )
   }
 
   handleDetailsClose = () => {
@@ -61,11 +69,19 @@ class Mentee extends React.Component {
     })
   }
 
-  receivedMessage = (response) => {
-    if (response.message.relationship.mentee.id === this.props.mentee.id && response.message.relationship.mentor.id === this.props.user.id && !this.state.chatOpen) {
-      this.setState({
-        newMessage: this.state.newMessage + 1,
-      })
+  handleReceivedMessage = (response) => {
+    const { message } = response
+    if (message.relationship.mentee.id === this.props.mentee.id && message.relationship.mentor.id === this.props.user.id) {
+      if (!this.state.chatOpen) {
+        this.setState({
+          newMessage: this.state.newMessage + 1,
+          messages: [...this.state.messages, message],
+        })
+      } else {
+        this.setState({
+          messages: [...this.state.messages, message],
+        })
+      }
     }
   }
 
@@ -109,7 +125,7 @@ class Mentee extends React.Component {
           />
           <ActionCable
             channel={{ channel: 'MessagesChannel' }}
-            onReceived={this.receivedMessage}
+            onReceived={this.handleReceivedMessage}
           />
           {this.state.newMessage > 0 ?
             <Badge badgeContent={this.state.newMessage} color="secondary">
@@ -134,6 +150,8 @@ class Mentee extends React.Component {
             open={this.state.chatOpen}
             onClose={this.handleChatClose}
             mentee={this.props.mentee}
+            messages={this.state.messages}
+            relationship={this.state.relationship}
           />
         </CardActions>
       </Card>

@@ -1,73 +1,42 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ActionCable } from 'react-actioncable-provider'
 import * as actions from  '../actions'
-import { API_ROOT } from '../constants'
 import NewMessageForm from './NewMessageForm'
 
 import Dialog from '@material-ui/core/Dialog'
 
-class MenteeChatbox extends React.Component {
+const MenteeChatbox = props => {
 
-  state = {
-    relationship: null,
-    messages: [],
+  const handleClose = () => {
+    props.onClose(props.selectedValue)
   }
 
-  componentDidMount = () => {
-    fetch(`${API_ROOT}/api/v1/relationships`)
-    .then(res => res.json())
-    .then(json => this.setState({
-      relationship: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id),
-      messages: json.filter(relationship => relationship.mentor.id === this.props.user.id).find(relationship => relationship.mentee.id === this.props.mentee.id).messages,
-    })
-    )
-  }
+  const { classes, ...other } = props
 
-  handleReceivedMessage = response => {
-    const { message } = response
-    this.setState({
-      messages: [...this.state.messages, message]
-    })
-  }
-
-  handleClose = () => {
-    this.props.onClose(this.props.selectedValue)
-  }
-
-
-  render() {
-    const { classes, ...other } = this.props
-
-    return (
-      <Dialog maxWidth="lg" onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={other.open}>
-        <div style={{width:'600px', height:'800px'}}>
-          <ActionCable
-            channel={{ channel: 'MessagesChannel' }}
-            onReceived={this.handleReceivedMessage}
-          />
-          <div style={{position: 'absolute', top: 0, width: '100%', height:'10%', backgroundColor: '#3f51b5', display: 'block'}}>
-            <h3 style={{position: 'relative', top: 5, textAlign: 'center', color: 'white'}}>
-              {this.props.mentee ? `${this.props.mentee.first_name} ${this.props.mentee.last_name}` : null}
-            </h3>
-          </div>
-          <div style={{position: 'absolute', top: 66, width: '100%', height: '76%', overflow: 'scroll', display: 'block'}}>
-            <ul style={{listStyleType: 'none'}}>
-            {
-              this.state.messages.map(message => {
-                let floatStyle = (message.user_id === this.props.user.id) ? "right" : "left"
-                return <li style={{clear: 'both', padding: '10px 17px 10px 17px', margin: '10px 50px 10px 10px', borderRadius: '15px', backgroundColor: '#dadce8', textAlign: floatStyle, float: floatStyle}} key={message.id}>{message.text}</li>
-              })
-            }
-            </ul>
-          </div>
-          <div style={{position: 'absolute', bottom: 0, width: '100%', height: '13%', marginLeft: '25px'}}>
-            {this.state.relationship ? <NewMessageForm relationship={this.state.relationship} /> : null}
-          </div>
+  return (
+    <Dialog maxWidth="lg" onClose={handleClose} aria-labelledby="simple-dialog-title" open={other.open}>
+      <div style={{width:'600px', height:'800px'}}>
+        <div style={{position: 'absolute', top: 0, width: '100%', height:'10%', backgroundColor: '#3f51b5', display: 'block'}}>
+          <h3 style={{position: 'relative', top: 5, textAlign: 'center', color: 'white'}}>
+            {props.mentee ? `${props.mentee.first_name} ${props.mentee.last_name}` : null}
+          </h3>
         </div>
-      </Dialog>
-    )
-  }
+        <div style={{position: 'absolute', top: 66, width: '100%', height: '76%', overflow: 'scroll', display: 'block'}}>
+          <ul style={{listStyleType: 'none'}}>
+          {
+            props.messages.map(message => {
+              let floatStyle = (message.user_id === props.user.id) ? "right" : "left"
+              return <li style={{clear: 'both', padding: '10px 17px 10px 17px', margin: '10px 50px 10px 10px', borderRadius: '15px', backgroundColor: '#dadce8', textAlign: floatStyle, float: floatStyle}} key={message.id}>{message.text}</li>
+            })
+          }
+          </ul>
+        </div>
+        <div style={{position: 'absolute', bottom: 0, width: '100%', height: '13%', marginLeft: '25px'}}>
+          {props.relationship ? <NewMessageForm relationship={props.relationship} /> : null}
+        </div>
+      </div>
+    </Dialog>
+  )
 }
 
 function mapStateToProps(state) {

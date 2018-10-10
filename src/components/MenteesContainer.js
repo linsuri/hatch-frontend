@@ -13,7 +13,7 @@ const styles = theme => ({
 })
 
 const MenteesContainer = (props) => {
-  // console.log('Arrays of all mentees', props)
+
   const { classes } = props
   return (
     <div className={classes.root}>
@@ -25,7 +25,6 @@ const MenteesContainer = (props) => {
 }
 
 function mapStateToProps(state) {
-  console.log('MenteesContainer state', state)
   return {
     mentees: state.usersReducer.user.mentees,
   }
