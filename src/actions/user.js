@@ -90,36 +90,6 @@ export const logOut = () => {
   }
 }
 
-// export const patchUserProfile = (stateUserData) => {
-//   return (dispatch) => {
-//     fetch("http://192.168.2.29:3000/api/v1/users",{
-//       method: 'PATCH',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Accept: 'application/json'
-//       },
-//       body: JSON.stringify({
-//         user: {
-//           id: stateUserData.id,
-//           first_name: stateUserData.first_name,
-//           last_name: stateUserData.last_name,
-//           email_address: stateUserData.email_address,
-//           // password: '',
-//           job_title: stateUserData.job_title,
-//           // location: ,
-//           expertiseArray: stateUserData.expertiseArray.join(","),
-//           bio: stateUserData.bio,
-//           linkedin: stateUserData.linkedin,
-//           github: stateUserData.github,
-//           personal_website: stateUserData.personal_website,
-//           mentor_status: stateUserData.mentor_status,
-//           will_buy_coffee: stateUserData.will_buy_coffee,
-//         }
-//       })
-//     })
-//   }
-// }
-
 export const receivedNotifications = response => ({
   type: 'RECEIVED_NOTIFICATIONS',
   payload: response.notification,
