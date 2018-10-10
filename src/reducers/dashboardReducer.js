@@ -2,8 +2,6 @@ const initialState = {
   dashboardTab: 0,
   conversations: [],
   activeConversation: null,
-  allNotifications: [],
-  // details: {},
 }
 
 export default function dashboardReducer(state = initialState, action) {

@@ -30,13 +30,19 @@ const usersReducer = (state = defaultState, action) => {
         user: null,
         loggedIn: false,
         failedLogin: false,
-        error: null
+        error: null,
       }
     case 'RECEIVED_NOTIFICATIONS':
       if (action.payload.recipient.id === state.user.id) {
         return {
           ...state,
           newNotifications: state.newNotifications + 1,
+          notifications: [...state.notifications, action.payload],
+        }
+      } else {
+        return {
+          ...state,
+          notifications: [...state.notifications],
         }
       }
     case 'CLEAR_NOTIFICATIONS':

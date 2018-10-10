@@ -27,35 +27,6 @@
 //   }
 // }
 
-export const fetchAllNotifications = (user_id) => {
-  return (dispatch) => {
-    fetch("http://192.168.2.29:3000/api/v1/users")
-    .then(res => res.json())
-    .then(json => json.find(user => user.id === user_id))
-    .then(user => {
-      dispatch(setAllNotifications(user))
-    })
-  }
-}
-
-export function setAllNotifications(user) {
-  let allNotifications = []
-  // if (user.sent_notifications.length > 0 && user.received_notifications.length > 0) {
-  //   allNotifications = [...user.sent_notifications, ...user.received_notifications]
-  // } else if (user.sent_notifications.length === 0 && user.received_notifications.length > 0) {
-  //   allNotifications = [...user.received_notifications]
-  // } else if (user.sent_notifications.length > 0 && user.received_notifications.length === 0) {
-  //   allNotifications = [...user.sent_notifications]
-  // }
-  if (user.received_notifications.length > 0) {
-    allNotifications = [...user.received_notifications]
-  }
-  return {
-    type: 'SET_ALL_NOTIFICATIONS',
-    payload: allNotifications,
-  }
-}
-
 export const acceptRequest = (mentor_id, mentee_id) => {
   return (dispatch) => {
     fetch("http://192.168.2.29:3000/api/v1/relationships", {
@@ -118,32 +89,5 @@ export function dashboardChangeTab(index) {
 //   return {
 //     type: 'SHOW_DETAILS',
 //     payload: details
-//   }
-// }
-
-// export function likePet(pet) {
-//   return {
-//     type: 'LIKE_PET',
-//     payload: pet,
-//   }
-// }
-//
-// export function selectPet(pet) {
-//   return {
-//     type: SELECT_PET, // OPEN_PROFILE, CHANGE_PROFILE, CHANGE_DISPLAY_PET
-//     payload: pet,
-//   }
-// }
-//
-// export function uploadPet(name, age, species) {
-//   return {
-//     type: 'ADD_PET',
-//     payload: {
-//       id: UUID(),
-//       name,
-//       age,
-//       species,
-//       gb: true,
-//     }
 //   }
 // }

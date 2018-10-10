@@ -3,13 +3,10 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import * as actions from  '../actions'
 import withAuth from '../hocs/withAuth'
-// import { API_ROOT } from '../constants'
 
-// import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-// import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
@@ -24,14 +21,10 @@ const styles = theme => ({
 
 class Notifications extends React.Component {
 
-  componentDidMount() {
-    this.props.fetchAllNotifications(this.props.user.id)
-  }
-
-  parseAllNotifications = (allNotifications) => {
+  parseAllNotifications = (notifications) => {
     const { classes } = this.props
     return (
-      allNotifications.map((notification, index) => {
+      notifications.map((notification, index) => {
         let final = null
         if (notification.text === 'mentorship request') {
           final = (
@@ -57,7 +50,7 @@ class Notifications extends React.Component {
     return (
       <div className={classes.root}>
         <List component="nav">
-          {this.parseAllNotifications(this.props.allNotifications)}
+          {this.parseAllNotifications(this.props.notifications)}
         </List>
       </div>
     )
@@ -67,7 +60,7 @@ class Notifications extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.usersReducer.user,
-    allNotifications: state.dashboardReducer.allNotifications,
+    notifications: state.usersReducer.notifications,
   }
 }
 
