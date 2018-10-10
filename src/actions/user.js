@@ -147,3 +147,40 @@ export const clearNotifications = (user_id) => {
   })
   }
 }
+
+export const acceptRequest = (mentor_id, mentee_id) => {
+  return (dispatch) => {
+    fetch("http://192.168.2.29:3000/api/v1/relationships", {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        relationship: {
+          mentee_id: mentee_id,
+          mentor_id: mentor_id,
+          accepted: true,
+        }
+      })
+    })
+  }
+}
+
+export const declineRequest = (mentor_id, mentee_id) => {
+  return (dispatch) => {
+    fetch("http://192.168.2.29:3000/api/v1/relationships", {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        relationship: {
+          mentee_id: mentee_id,
+          mentor_id: mentor_id,
+        }
+      })
+    })
+  }
+}

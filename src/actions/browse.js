@@ -38,7 +38,6 @@ export const fetchAllRelationships = (user_id) => {
     fetch("http://192.168.2.29:3000/api/v1/relationships")
     .then(res => res.json())
     .then(json => json.filter(relationship => relationship.mentee.id === user_id))
-    // .then(console.log)
     .then(relationships => {
       dispatch(setAllRelationships(relationships))
     })

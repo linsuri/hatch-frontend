@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { ActionCable } from 'react-actioncable-provider'
-import * as actions from  '../actions/actions'
+import * as actions from  '../actions'
 import MenteeDetails from './MenteeDetails'
 import MenteeChatbox from './MenteeChatbox'
 
@@ -70,7 +70,6 @@ class Mentee extends React.Component {
   }
 
   render() {
-    console.log('Mentee props', this.props)
 
     const { classes } = this.props
     const { first_name, last_name, job_title, profile_pic } = this.props.mentee

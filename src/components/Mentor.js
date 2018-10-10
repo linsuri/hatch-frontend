@@ -70,7 +70,6 @@ class Mentor extends React.Component {
   }
 
   render() {
-    // console.log('Mentor props', this.props)
 
     const { classes } = this.props
     const { first_name, last_name, job_title, profile_pic } = this.props.mentor

@@ -1,17 +1,10 @@
 import React from 'react'
-// import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { compose } from 'redux'
 import { ActionCable } from 'react-actioncable-provider'
 import * as actions from  '../actions'
 import { API_ROOT } from '../constants'
-// import Cable from './Cable'
-// import NewConversationForm from './NewConversationForm'
-// import MessagesArea from './MessagesArea'
 import NewMessageForm from './NewMessageForm'
 
-
-// import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 
 class MenteeChatbox extends React.Component {
@@ -19,7 +12,6 @@ class MenteeChatbox extends React.Component {
   state = {
     relationship: null,
     messages: [],
-    // activeConversation: null
   }
 
   componentDidMount = () => {
@@ -33,7 +25,6 @@ class MenteeChatbox extends React.Component {
   }
 
   handleReceivedMessage = response => {
-    // console.log('response', response)
     const { message } = response
     this.setState({
       messages: [...this.state.messages, message]
@@ -80,32 +71,9 @@ class MenteeChatbox extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('MenteeChatbox state', state)
   return {
     user: state.usersReducer.user,
-    // conversations: state.dashboardReducer.conversations,
-    // activeConversation: state.dashboardReducer.conversations,
   }
 }
 
-export default compose(
-  // withStyles(styles),
-  connect(mapStateToProps, actions)
-)(MenteeChatbox)
-
-
-// const findActiveConversation = (conversations, activeConversation) => {
-//   return conversations.find(
-//     conversation => conversation.id === activeConversation
-//   )
-// }
-//
-// const mapConversations = (conversations, handleClick) => {
-//   return conversations.map(conversation => {
-//     return (
-//       <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-//         {conversation.title}
-//       </li>
-//     )
-//   })
-// }
+export default connect(mapStateToProps, actions)(MenteeChatbox)

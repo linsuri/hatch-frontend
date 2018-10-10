@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { ActionCable } from 'react-actioncable-provider'
 import * as actions from  '../actions'
 import Notifications from './Notifications'
 
@@ -12,7 +11,6 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
-// import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import DashboardRounded from '@material-ui/icons/DashboardRounded'
 import ExploreRounded from '@material-ui/icons/ExploreRounded'
@@ -42,7 +40,6 @@ class LoggedInHeader extends React.Component {
   state = {
     profileMenu: null,
     notificationsMenu: null,
-    // newNotification: 0,
   }
 
   openProfileMenu = (event) => {
@@ -69,22 +66,7 @@ class LoggedInHeader extends React.Component {
     })
   }
 
-  // receivedNotification = (response) => {
-  //   if (response.notification.recipient.id === this.props.user.id) {
-  //     this.setState({
-  //       newNotification: this.state.newNotification + 1,
-  //     }, () => console.log('setting newNotification'))
-  //   }
-  // }
-
-  // clearNotifications = () => {
-  //   this.setState({
-  //     newNotification: 0,
-  //   })
-  // }
-
   render() {
-    console.log('header props', this.props)
 
     const { classes } = this.props
     const openProfile = Boolean(this.state.profileMenu)
@@ -92,10 +74,6 @@ class LoggedInHeader extends React.Component {
 
     return (
       <div className={classes.root}>
-        <ActionCable
-          channel={{ channel: 'NotificationsChannel' }}
-          onReceived={this.props.receivedNotification}
-        />
         <AppBar position="fixed">
           <div className={classes.layout}>
             <Toolbar>
