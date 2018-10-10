@@ -23,7 +23,6 @@ export const signUp = (email_address, password, first_name, last_name) => {
         }
       })
     .then(json => {
-      // console.log(json)
       localStorage.setItem('jwt', json.jwt)
       dispatch({ type: 'SET_CURRENT_USER', payload: json.user })
     })

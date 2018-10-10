@@ -41,39 +41,36 @@ const styles = theme => ({
 })
 
 const Dashboard = (props) => {
-  // console.log('Dashboard props', props)
 
-    const { classes, theme } = props
+  const { classes, theme } = props
 
-    return (
-      <div className={classes.root}>
-        <LoggedInHeader />
-        <AppBar position="relative" color="default">
-          <Tabs
-            value={props.dashboardTab}
-            onChange={(event, value) => props.dashboardClickTab(event, value)}
-            indicatorColor="primary"
-            textColor="primary"
-            fullWidth
-          >
-            <Tab label="My Mentors" />
-            <Tab label="My Mentees" />
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={props.dashboardTab}
-          onChangeIndex={(index) => props.dashboardChangeTab(index)}
-        >
-          <TabContainer dir={theme.direction}>
-            <MentorsContainer />
-          </TabContainer>
-          <TabContainer dir={theme.direction}>
-            <MenteesContainer />
-          </TabContainer>
-        </SwipeableViews>
-      </div>
-    )
+  return (
+    <div className={classes.root}>
+      <LoggedInHeader />
+      <AppBar position="relative" color="default">
+        <Tabs
+          value={props.dashboardTab}
+          onChange={(event, value) => props.dashboardClickTab(event, value)}
+          indicatorColor="primary"
+          textColor="primary"
+          fullWidth >
+          <Tab label="My Mentors" />
+          <Tab label="My Mentees" />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={props.dashboardTab}
+        onChangeIndex={(index) => props.dashboardChangeTab(index)} >
+        <TabContainer dir={theme.direction}>
+          <MentorsContainer />
+        </TabContainer>
+        <TabContainer dir={theme.direction}>
+          <MenteesContainer />
+        </TabContainer>
+      </SwipeableViews>
+    </div>
+  )
 }
 
 Dashboard.propTypes = {
@@ -81,10 +78,9 @@ Dashboard.propTypes = {
   theme: PropTypes.object.isRequired,
 }
 
-function mapStateToProps(state) {
-  // console.log('Dashboard state', state)
+function mapStateToProps({ dashboardReducer: { dashboardTab } }) {
   return {
-    dashboardTab: state.dashboardReducer.dashboardTab,
+    dashboardTab,
   }
 }
 

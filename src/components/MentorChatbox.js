@@ -39,9 +39,9 @@ const MentorChatbox = props => {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ usersReducer: { user } }) {
   return {
-    user: state.usersReducer.user,
+    user,
   }
 }
 

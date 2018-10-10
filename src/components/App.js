@@ -32,7 +32,6 @@ const App = (props) => {
       </Switch>
     </Fragment>
   )
-
 }
 
 export default compose(

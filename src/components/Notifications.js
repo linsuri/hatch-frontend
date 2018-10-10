@@ -57,10 +57,10 @@ class Notifications extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ usersReducer: { user, notifications } }) {
   return {
-    user: state.usersReducer.user,
-    notifications: state.usersReducer.notifications,
+    user,
+    notifications,
   }
 }
 

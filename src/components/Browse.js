@@ -102,16 +102,11 @@ class Browse extends React.Component {
   }
 }
 
-
-  // this.props.allRelationships.map(relationship => (
-  //   relationship.mentor.id === mentor.id && relationship.accepted === false ?
-
-function mapStateToProps(state) {
-  // console.log('Dashboard state', state)
+function mapStateToProps({ usersReducer: { user }, browseReducer: { allMentors, allRelationships } }) {
   return {
-    user: state.usersReducer.user,
-    allMentors: state.browseReducer.allMentors,
-    allRelationships: state.browseReducer.allRelationships,
+    user,
+    allMentors,
+    allRelationships,
   }
 }
 

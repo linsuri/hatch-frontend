@@ -5,11 +5,9 @@ import { compose } from 'redux'
 import * as actions from  '../actions'
 import withAuth from '../hocs/withAuth'
 
-// import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-// import MenuItem from '@material-ui/core/MenuItem'
 import TextField from '@material-ui/core/TextField'
 import Switch from '@material-ui/core/Switch'
 import Avatar from '@material-ui/core/Avatar'
@@ -147,7 +145,6 @@ class Profile extends React.Component {
   render() {
     const { classes } = this.props
 
-    console.log('profile state', this.state)
     return (
       <div className={classes.root}>
         <LoggedInHeader />
@@ -156,8 +153,7 @@ class Profile extends React.Component {
             style={{marginLeft: 'auto', marginRight: 'auto'}}
             alt="Profile Pic"
             src={this.state.profile_pic}
-            className={classNames(classes.avatar, classes.bigAvatar)}
-          />
+            className={classNames(classes.avatar, classes.bigAvatar)}   />
           <div style={{width: '70%', marginLeft: 'auto', marginRight: 'auto'}}>
             <Switch
             checked={this.state.mentor_status}
@@ -179,8 +175,7 @@ class Profile extends React.Component {
                 margin="normal"
                 helperText="Required"
                 onChange={this.handleChange}
-                value={this.state.first_name}
-              />
+                value={this.state.first_name} />
               <TextField
                 required
                 id="last_name"
@@ -189,8 +184,7 @@ class Profile extends React.Component {
                 margin="normal"
                 helperText="Required"
                 onChange={this.handleChange}
-                value={this.state.last_name}
-              />
+                value={this.state.last_name} />
               <TextField
                 required
                 id="email_address"
@@ -199,8 +193,7 @@ class Profile extends React.Component {
                 margin="normal"
                 helperText="Required"
                 onChange={this.handleChange}
-                value={this.state.email_address}
-              />
+                value={this.state.email_address} />
               <TextField
                 required
                 type="password"
@@ -210,19 +203,17 @@ class Profile extends React.Component {
                 margin="normal"
                 helperText="Required"
                 onChange={this.handleChange}
-                value={this.state.password}
-              />
+                value={this.state.password} />
               <TextField
                 id="location"
                 label="Location"
                 // need to not hard code this
                 defaultValue="New York, NY"
+                // value={this.state.location}
                 className={classes.textField}
                 margin="normal"
                 helperText="Required"
-                onChange={this.handleChange}
-                // value={this.state.location}
-              />
+                onChange={this.handleChange} />
               <TextField
                 id="job_title"
                 label="Job Title"
@@ -230,9 +221,7 @@ class Profile extends React.Component {
                 margin="normal"
                 onChange={this.handleChange}
                 onKeyUp={this.handleAddToArray}
-                value={this.state.job_title}
-              />
-              {/* POST state once onSubmit like usual */}
+                value={this.state.job_title} />
               <TextField
                 id="expertise"
                 label="Expertise"
@@ -240,17 +229,16 @@ class Profile extends React.Component {
                 margin="normal"
                 onChange={this.handleChange}
                 onKeyUp={this.handleAddToArray}
-                value={this.state.expertise}
-              />
+                value={this.state.expertise} />
               {this.state.expertiseArray.map((data, index) => {
                 return data !== "" ?
                   (<Chip
                     key={index}
                     label={data}
                     onDelete={this.handleDeleteChip(data)}
-                    className={classes.chip}
-                  />) :
-                  null})
+                    className={classes.chip} />) :
+                  null
+                })
               }
               <TextField
                 id="bio"
@@ -260,32 +248,28 @@ class Profile extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 onChange={this.handleChange}
-                value={this.state.bio}
-              />
+                value={this.state.bio} />
               <TextField
                 id="linkedin"
                 label="LinkedIn"
                 className={classes.textField}
                 margin="normal"
                 onChange={this.handleChange}
-                value={this.state.linkedin}
-              />
+                value={this.state.linkedin} />
               <TextField
                 id="github"
                 label="Github"
                 className={classes.textField}
                 margin="normal"
                 onChange={this.handleChange}
-                value={this.state.github}
-              />
+                value={this.state.github} />
               <TextField
                 id="personal_website"
                 label="Personal Website"
                 className={classes.textField}
                 margin="normal"
                 onChange={this.handleChange}
-                value={this.state.personal_website}
-              />
+                value={this.state.personal_website} />
               <Button variant="contained" color="primary" className={classes.button} onClick={() => this.patchUserProfile(this.state)}>
                 Save
               </Button>
@@ -301,9 +285,9 @@ Profile.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ usersReducer: { user } }) {
   return {
-    user: state.usersReducer.user,
+    user,
   }
 }
 

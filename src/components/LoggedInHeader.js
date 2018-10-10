@@ -163,13 +163,13 @@ LoggedInHeader.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ usersReducer: { user, logOut, newNotifications }, dashboardReducer: { profileMenu, notificationsMenu } }) {
   return {
-    user: state.usersReducer.user,
-    profileMenu: state.dashboardReducer.profileMenu,
-    notificationsMenu: state.dashboardReducer.notificationsMenu,
-    logOut: state.usersReducer.logOut,
-    newNotifications: state.usersReducer.newNotifications
+    user,
+    logOut,
+    newNotifications,
+    profileMenu,
+    notificationsMenu,
   }
 }
 

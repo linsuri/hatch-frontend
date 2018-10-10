@@ -98,8 +98,7 @@ class Mentor extends React.Component {
             className={classes.media}
             height="200"
             image={profile_pic}
-            title="title"
-          />
+            title="title" />
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
               {first_name} {last_name}
@@ -113,27 +112,23 @@ class Mentor extends React.Component {
           <Button
             size="small"
             color="primary"
-            onClick={this.handleDetailsClickOpen}
-          >
+            onClick={this.handleDetailsClickOpen} >
             Show Details
           </Button>
           <MentorDetails
             open={this.state.detailsOpen}
             onClose={this.handleDetailsClose}
             mentor={this.props.mentor}
-            classes={classes}
-          />
+            classes={classes} />
           <ActionCable
             channel={{ channel: 'MessagesChannel' }}
-            onReceived={this.handleReceivedMessage}
-          />
+            onReceived={this.handleReceivedMessage} />
           {this.state.newMessage > 0 ?
             <Badge badgeContent={this.state.newMessage} color="secondary">
               <Button
                 size="small"
                 color="primary"
-                onClick={this.handleChatClickOpen}
-              >
+                onClick={this.handleChatClickOpen} >
                 Chat
               </Button>
             </Badge>
@@ -141,8 +136,7 @@ class Mentor extends React.Component {
             <Button
               size="small"
               color="primary"
-              onClick={this.handleChatClickOpen}
-            >
+              onClick={this.handleChatClickOpen} >
               Chat
             </Button>
           }
@@ -151,8 +145,7 @@ class Mentor extends React.Component {
             onClose={this.handleChatClose}
             mentor={this.props.mentor}
             messages={this.state.messages}
-            relationship={this.state.relationship}
-          />
+            relationship={this.state.relationship} />
         </CardActions>
       </Card>
     )
@@ -163,9 +156,9 @@ Mentor.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ usersReducer: { user } }) {
   return {
-    user: state.usersReducer.user,
+    user,
   }
 }
 

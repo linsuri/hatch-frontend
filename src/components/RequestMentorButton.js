@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import * as actions from  '../actions'
-// import withAuth from '../hocs/withAuth'
 import { API_ROOT, HEADERS } from '../constants'
 
 import PropTypes from 'prop-types'
@@ -33,13 +32,13 @@ class RequestMentorButton extends React.Component {
         }
       })
     })
-    // .then(res => res.json())
     this.setState({
       disabled: true,
     })
   }
 
   render() {
+
     const { classes } = this.props
 
     if (this.state.disabled === true || this.props.disable === true) {
@@ -73,10 +72,9 @@ RequestMentorButton.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ usersReducer: { user } }) {
   return {
-    user: state.usersReducer.user,
-    // allRelationships: state.browseReducer.allRelationships,
+    user,
   }
 }
 
