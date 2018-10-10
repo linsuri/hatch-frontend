@@ -113,7 +113,7 @@ class Profile extends React.Component {
   }
 
   patchUserProfile = (stateUserData) => {
-    fetch("http://192.168.2.29:3000/api/v1/users",{
+    fetch("http://localhost:3000/api/v1/users",{
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
