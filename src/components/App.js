@@ -27,6 +27,7 @@ const App = (props) => {
         <Route exact path="/profile" component={Profile} />
         <Route render={() => <Redirect to="/dashboard" />} />
       </Switch>
+      <p style={{zIndex: 2, margin: 0, position: 'fixed', bottom: 0, textAlign: 'center', width: '100%', backgroundColor: 'white'}}>Hatch 2018 by Lin Sriuthenchai</p>
     </Fragment>
   )
 }
