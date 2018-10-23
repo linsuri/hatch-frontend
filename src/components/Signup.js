@@ -75,6 +75,11 @@ class Signup extends React.Component {
     })
   }
 
+  errorFlash = error => {
+    alert(error)
+    this.props.closeAlertError()
+  }
+
   render() {
     const { classes, loggedIn, error, location } = this.props
     const { email_address, password, first_name, last_name } = this.state
@@ -82,64 +87,63 @@ class Signup extends React.Component {
     if (loggedIn) {
       return <Redirect to={location.state ? location.state.currentPage : "/dashboard"} />
     } else {
-      if (!error) {
-        return (
-          <div className={classes.root}>
-            <LoggedOutHeader />
-            <Paper className={classes.paper} elevation={1}>
-              <Typography variant="headline" component="h3">
-                Sign up to start your career journey with the help of the community of your professions.
-              </Typography>
-              <form
-                onSubmit={this.handleSignupSubmit}
-                className={classes.container}
-                noValidate
-                autoComplete="off">
-                <TextField
-                  id="email_address"
-                  label="Email Address"
-                  value={email_address}
-                  onChange={this.handleChange}
-                  className={classNames(classes.textField, classes.dense)}
-                  margin="dense" />
-                <TextField
-                  id="password"
-                  label="Password"
-                  value={password}
-                  onChange={this.handleChange}
-                  className={classes.textField}
-                  type="password"
-                  autoComplete="current-password"
-                  margin="normal" />
-                <TextField
-                  id="first_name"
-                  label="First Name"
-                  value={first_name}
-                  onChange={this.handleChange}
-                  className={classNames(classes.textField, classes.dense)}
-                  margin="dense" />
-                <TextField
-                  id="last_name"
-                  label="Last Name"
-                  value={last_name}
-                  onChange={this.handleChange}
-                  className={classNames(classes.textField, classes.dense)}
-                  margin="dense" />
-                <Button
-                  type="submit"
-                  color="primary"
-                  className={classes.button}>
-                  Sign Up
-                </Button>
-              </form>
-              <Typography component="p">
-                By signing up, you agree to our <Link to="/login" style={{ textDecoration: 'none'}}>Terms, Data Policy</Link> and <Link to="/login" style={{ textDecoration: 'none'}}>Cookies Policy</Link>.
-              </Typography>
-            </Paper>
-            <p style={{textAlign: 'center'}}>Have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Log In</Link></p>
-          </div>
-        )
-      }
+      return (
+        <div className={classes.root}>
+          {error ? this.errorFlash(error) : null}
+          <LoggedOutHeader />
+          <Paper className={classes.paper} elevation={1}>
+            <Typography variant="headline" component="h3">
+              Sign up to start your career journey with the help of the community of your professions.
+            </Typography>
+            <form
+              onSubmit={this.handleSignupSubmit}
+              className={classes.container}
+              noValidate
+              autoComplete="off">
+              <TextField
+                id="email_address"
+                label="Email Address"
+                value={email_address}
+                onChange={this.handleChange}
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense" />
+              <TextField
+                id="password"
+                label="Password"
+                value={password}
+                onChange={this.handleChange}
+                className={classes.textField}
+                type="password"
+                autoComplete="current-password"
+                margin="normal" />
+              <TextField
+                id="first_name"
+                label="First Name"
+                value={first_name}
+                onChange={this.handleChange}
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense" />
+              <TextField
+                id="last_name"
+                label="Last Name"
+                value={last_name}
+                onChange={this.handleChange}
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense" />
+              <Button
+                type="submit"
+                color="primary"
+                className={classes.button}>
+                Sign Up
+              </Button>
+            </form>
+            <Typography component="p">
+              By signing up, you agree to our <Link to="/login" style={{ textDecoration: 'none'}}>Terms, Data Policy</Link> and <Link to="/login" style={{ textDecoration: 'none'}}>Cookies Policy</Link>.
+            </Typography>
+          </Paper>
+          <p style={{textAlign: 'center'}}>Have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Log In</Link></p>
+        </div>
+      )
     }
   }
 }

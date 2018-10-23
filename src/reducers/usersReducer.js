@@ -24,6 +24,11 @@ const usersReducer = (state = defaultState, action) => {
         failedLogin: true,
         error: action.payload,
       }
+    case 'CLOSE_ALERT_ERROR':
+      return {
+        ...state,
+        error: null,
+      }
     case 'LOG_OUT':
       return {
         ...state,

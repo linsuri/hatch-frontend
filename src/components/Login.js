@@ -70,6 +70,11 @@ class Login extends React.Component {
     })
   }
 
+  errorFlash = error => {
+    alert(error)
+    this.props.closeAlertError()
+  }
+
   render() {
     const { classes, loggedIn, error, location } = this.props
     const { email_address, password } = this.state
@@ -77,46 +82,43 @@ class Login extends React.Component {
     if (loggedIn) {
       return <Redirect to={location.state ? location.state.currentPage : "/dashboard"} />
     } else {
-      if (!error) {
-        return (
-          <div className={classes.root}>
-            <LoggedOutHeader />
-            <Paper className={classes.paper} elevation={1}>
-              <form
-                onSubmit={this.handleLoginSubmit}
-                className={classes.container}
-                noValidate
-                autoComplete="off">
-                <TextField
-                  id="email_address"
-                  label="Email Address"
-                  value={email_address}
-                  onChange={this.handleChange}
-                  className={classNames(classes.textField, classes.dense)}
-                  margin="dense" />
-                <TextField
-                  id="password"
-                  label="Password"
-                  value={password}
-                  onChange={this.handleChange}
-                  className={classes.textField}
-                  type="password"
-                  autoComplete="current-password"
-                  margin="normal" />
-                <Button
-                  type="submit"
-                  color="primary"
-                  className={classes.button}>
-                  Log In
-                </Button>
-              </form>
-            </Paper>
-            <p style={{ textAlign: 'center' }}>Don't have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Sign Up</Link></p>
-          </div>
-        )
-      } else {
-        alert(error)
-      }
+      return (
+        <div className={classes.root}>
+          {error ? this.errorFlash(error) : null}
+          <LoggedOutHeader />
+          <Paper className={classes.paper} elevation={1}>
+            <form
+              onSubmit={this.handleLoginSubmit}
+              className={classes.container}
+              noValidate
+              autoComplete="off">
+              <TextField
+                id="email_address"
+                label="Email Address"
+                value={email_address}
+                onChange={this.handleChange}
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense" />
+              <TextField
+                id="password"
+                label="Password"
+                value={password}
+                onChange={this.handleChange}
+                className={classes.textField}
+                type="password"
+                autoComplete="current-password"
+                margin="normal" />
+              <Button
+                type="submit"
+                color="primary"
+                className={classes.button}>
+                Log In
+              </Button>
+            </form>
+          </Paper>
+          <p style={{ textAlign: 'center' }}>Don't have an account? <Link to="/login" style={{ textDecoration: 'none'}}>Sign Up</Link></p>
+        </div>
+      )
     }
   }
 }

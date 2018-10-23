@@ -26,7 +26,7 @@ export const signUp = (email_address, password, first_name, last_name) => {
       localStorage.setItem('jwt', json.jwt)
       dispatch({ type: 'SET_CURRENT_USER', payload: json.user })
     })
-    .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+    .catch(r => r.json().then(json => dispatch({ type: 'FAILED_LOGIN', payload: json.errors })))
   }
 }
 
@@ -56,7 +56,7 @@ export const logIn = (email_address, password) => {
       localStorage.setItem('jwt', json.jwt)
       dispatch({ type: 'SET_CURRENT_USER', payload: json.user })
     })
-    .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+    .catch(r => r.json().then(json => dispatch({ type: 'FAILED_LOGIN', payload: json.message })))
   }
 }
 
@@ -81,6 +81,10 @@ export const setCurrentUser = userData => ({
 export const failedLogin = errorMsg => ({
   type: 'FAILED_LOGIN',
   payload: errorMsg
+})
+
+export const closeAlertError = () => ({
+  type: 'CLOSE_ALERT_ERROR',
 })
 
 export const logOut = () => {
