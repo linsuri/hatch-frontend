@@ -9,7 +9,8 @@ Hatch is a web application that helps you develop your professional network in a
 3. In the command line, `cd` into the backend folder and run `bundle install`.
 4. Run `rails s` to start your backend server. It should run on `localhost:3000`.
 5. Open another tab in your command line, `cd` into the backend folder and run `npm install`.
-6. Run `npm start` to start your frontend server. If you are prompted to run the server on a different port than your backend, type `y`. Your frontend server should run on `localhost:3001`.
+6. In `src/actions/user.js` and `src/actions/browse.js`, change anywhere that says `https://hatch-backend.herokuapp.com/` to `http://localhost:3000/`.
+7. Run `npm start` to start your frontend server. If you are prompted to run the server on a different port than your backend, type `y`. Your frontend server should run on `localhost:3001`.
 
 After you run `npm start`, a tab in your browser should open automatically. Go ahead and sign up as a new user. In the Profile page, you have the option to make yourself a mentor so that you will show up on the browse page!
 

@@ -1,6 +1,6 @@
 export const signUp = (email_address, password, first_name, last_name) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("https://hatch-backend.herokuapp.com/api/v1/users", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export const signUp = (email_address, password, first_name, last_name) => {
 
 export const logIn = (email_address, password) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("https://hatch-backend.herokuapp.com/api/v1/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export const logIn = (email_address, password) => {
 
 export const fetchCurrentUser = () => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/profile", {
+    fetch("https://hatch-backend.herokuapp.com/api/v1/profile", {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -101,7 +101,7 @@ export const receivedNotifications = response => ({
 
 export const clearNotifications = (user_id) => {
   return (dispatch) => {
-    fetch('http://localhost:3000/api/v1/notifications', {
+    fetch('https://hatch-backend.herokuapp.com/api/v1/notifications', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ export const clearNotifications = (user_id) => {
 
 export const acceptRequest = (mentor_id, mentee_id) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/relationships", {
+    fetch("https://hatch-backend.herokuapp.com/api/v1/relationships", {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ export const acceptRequest = (mentor_id, mentee_id) => {
 
 export const declineRequest = (mentor_id, mentee_id) => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/relationships", {
+    fetch("https://hatch-backend.herokuapp.com/api/v1/relationships", {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
